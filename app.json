@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/card/card",
+    "pages/msg/msg",
+    "pages/me/me",
+    "pages/login/login",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#FF3A59",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/image/dollar6.png",
+        "selectedIconPath": "static/image/dollar4.png"
+      },
+      {
+        "pagePath": "pages/card/card",
+        "text": "卡券",
+        "iconPath": "static/image/dollar3.png",
+        "selectedIconPath": "static/image/dollar7.png"
+      },
+      {
+        "pagePath": "pages/msg/msg",
+        "text": "消息",
+        "iconPath": "static/image/mesg1.png",
+        "selectedIconPath": "static/image/mesg.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "个人中心",
+        "iconPath": "static/image/dollar.png",
+        "selectedIconPath": "static/image/dollar5.png"
+      }
+    ]
+  }
+}

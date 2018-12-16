@@ -1,0 +1,47 @@
+/**index.wxss**/
+
+swiper {
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+/** but **/
+
+.index-buttons {
+  width: 100%;
+  height: 120rpx;
+  clear: both;
+}
+
+.index-buttons-item {
+  height: 120rpx;
+  width: 330rpx;
+  float: left;
+}
+
+.index-buttons-item-right {
+  margin-left: 30rpx;
+}
+
+.index-buttons-item image {
+  width: 330rpx;
+  height: 120rpx;
+}
+
+/*******/
+
+.services-area {
+}
+
+.services-area-body-image-sm image {
+  width: 690rpx;
+  height: 350rpx;
+}
+
+.services-area-body-image-lc image {
+  width: 690rpx;
+  height: 291rpx;
+}

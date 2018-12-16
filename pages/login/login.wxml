@@ -1,0 +1,21 @@
+<!-- 轮播广告图 -->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{advertisements}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{item.imgUrl}}" class="slide-image" bindtap="slideDetail" data-id="{{item.id}}" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- space -->
+<view class='area-space'></view>
+
+<!-- 轮播广告图 -->
+
+<view class="draw-refresh-area">
+  <block wx:for="{{users}}">
+    <view>
+      <text>{{item.mobile}}</text>
+    </view>
+  </block>
+</view>

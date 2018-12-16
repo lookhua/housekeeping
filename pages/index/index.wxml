@@ -1,0 +1,62 @@
+<!--index.wxml-->
+
+
+
+<!-- 轮播广告图
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{advertisements}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{item.imgUrl}}" class="slide-image" bindtap="slideDetail" data-id="{{item.id}}" />
+    </swiper-item>
+  </block>
+</swiper>  -->
+<swiper class="fix-with" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <swiper-item>
+    <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+  </swiper-item>
+  <swiper-item>
+    <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+  </swiper-item>
+  <swiper-item>
+    <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+  </swiper-item>
+</swiper>
+
+<!-- space -->
+<view class='area-space'></view>
+
+<!-- buttons -->
+<view class="index-buttons fix-with">
+  <view class="index-buttons-item">
+    <image src="../../static/index/mycardbt.png"></image>
+  </view>
+  <view class="index-buttons-item index-buttons-item-right">
+    <image src="../../static/index/chageBt.png"></image>
+  </view>
+</view>
+
+<!-- space -->
+<view class='area-space'></view>
+
+<!-- services -->
+<view class="services-area fix-with">
+  <view class="services-area-title">
+    <text>热门服务</text>
+  </view>
+  <view class="services-area-body">
+    <view class="services-area-body-image-sm">
+      <image class="commonbj" src="../../static/index/commonbj.png" />
+    </view>
+    <view class="services-area-body-image-lc">
+      <image class="orderdown" src="../../static/index/orderdown.png" />
+    </view>
+    <view class='area-space'></view>
+    <view class="services-area-body-bt">
+      <button class="weui-btn weui-btn_warn" type='warn'>立即预定</button>
+    </view>
+  </view>
+
+</view>
+
+<view class='area-space'></view>
+<view class='area-space'></view>

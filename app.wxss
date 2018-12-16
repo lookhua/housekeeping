@@ -1,0 +1,26 @@
+/**app.wxss**/
+@import "weui.wxss";
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.area-space {
+  height: 20rpx;
+}
+
+
+page{
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.fix-with{
+  width: 690rpx;
+}
