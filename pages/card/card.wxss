@@ -1,30 +1,91 @@
 /**home.wxss**/
 
-page {
-  background-color: #f3f3f3;
+
+.card-top {
+  width: 690rpx;
 }
 
-.container {
-  background: powderblue;
+.card-top-total {
+  text-align: center;
 }
 
-swiper {
-  
-  background-color: blueviolet;
+.card-balance {
+  font-size: 60rpx;
+  color: orange;
 }
 
-.slide-image {
-  width: 100%;
-  height: 100%;
+.card-top-detail {
+  position: relative;
+  font-size: 28rpx;
+  display: block;
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+  padding: 20rpx 0rpx;
 }
 
-.home-swapper-area {
-  height: 150px;
-  width: 100%;
-  border: green;
+.card-top-detail-hd {
+  float: left;
+  width: 50rpx;
 }
 
-image {
-  display: inline-block;
-  overflow: hidden;
+.card-top-detail-hd image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.card-top-detail-bd {
+  float: left;
+  width: 30%;
+}
+
+.card-top-detail-ft {
+  float: right;
+  width: 30%;
+  text-align: right;
+}
+
+.card-list-items{
+  margin: 40rpx 0rpx;
+}
+
+.card-list-item{
+  position: relative;
+  height: 234rpx;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+.card-list-item-text{
+  z-index: 1;
+  position: absolute;
+  width: 620rpx;
+  top: 0rpx;
+  left: 0rpx;
+  padding: 36rpx;
+}
+.card-list-item-type{
+  text-align: right;
+  font-size: 40rpx;
+  color:  #e68888;
+}
+.card-list-item-kahao{
+  text-align: right;
+  font-size: 26rpx;
+  color:  #8f8f8f;
+}
+.card-list-item-yuer{
+  font-size: 38rpx;
+  color:  #f3453e;
+}
+.card-list-item-jihuo{
+  text-align: right;
+  font-size: 20rpx;
+  color:  #c7c7c7;
+}
+.card-list-item image {
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 0;
+  width: 690rpx;
+  height: 234rpx;
 }

@@ -13,7 +13,12 @@
 
 .area-space {
   height: 20rpx;
+  clear: both;
 }
+.area-clean {
+  clear: both;
+}
+
 
 
 page{

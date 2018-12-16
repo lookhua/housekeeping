@@ -1,1 +1,66 @@
 <!-- 轮播广告图 -->
+
+
+
+<view class="card-top fix-with">
+
+  <view class="card-top-total">
+    <view>
+      <text>我的余额</text>
+    </view>
+    <view class="card-balance">
+      <text>￥</text>
+      <text>{{totalBalance}}</text>
+      <text>元</text>
+    </view>
+  </view>
+
+  <view class="card-top-detail">
+    <view class="card-top-detail-hd">
+      <image src="../../static/image/bankcard.png" />
+    </view>
+    <view class="card-top-detail-bd">
+      <text>共计会员卡</text>
+    </view>
+    <view class="card-top-detail-ft">
+      <text>{{cardTotalCount}}</text>
+      <text>张</text>
+    </view>
+    <view class='area-clean'></view>
+  </view>
+</view>
+
+<view class='area-space'></view>
+
+<view class="card-list-items fix-with">
+  <view class="card-list-item">
+    <view class="card-list-item-text">
+      <view class="card-list-item-type">会员卡</view>
+      <view class="card-list-item-yuer">
+        <text>￥</text>
+        <text>{{totalBalance}}</text>
+        <text>元</text>
+      </view>
+      <view class="card-list-item-kahao">卡号:NEFEFHHDF</view>
+      <view class="card-list-item-jihuo">激活日志:2018-09-30 有效期至:2018-80-2343</view>
+    </view>
+    <image src="../../static/card/cardbg.png" />
+  </view>
+  <view class="card-list-item">
+    <view class="card-list-item-text">
+      <view class="card-list-item-type">现金卡</view>
+      <view class="card-list-item-yuer">
+        <text>￥</text>
+        <text>{{totalBalance}}</text>
+        <text>元</text>
+      </view>
+      <view class="card-list-item-kahao">卡号:NEFEFHHDF</view>
+      <view class="card-list-item-jihuo">激活日志:2018-09-30 有效期至:2018-80-2343</view>
+    </view>
+    <image src="../../static/card/cardbg.png" />
+  </view>
+</view>
+
+<view class="card-balance-bt-area fix-with">
+  <button class="weui-btn weui-btn_warn" type='warn' bindtap="scanCardNumber">立即预定</button>
+</view>

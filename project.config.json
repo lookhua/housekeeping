@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
 	"appid": "wx8d7ca176a28a52ed",
-	"projectname": "wechatest",
+	"projectname": "housekeeping",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
