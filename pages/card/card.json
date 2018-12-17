@@ -1,5 +1,6 @@
 {
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
-  "backgroundColor": "#eeeeee"
+  "backgroundColor": "#eeeeee",
+  "navigationBarTitleText":"会员卡"
 }

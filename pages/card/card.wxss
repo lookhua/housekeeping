@@ -89,3 +89,14 @@
   width: 690rpx;
   height: 234rpx;
 }
+
+.card-balance-bt-area{
+  display: flex;
+} 
+.add-card-bt{
+  width: 340rpx;
+}
+.charge-money-bt{
+  width: 340rpx;
+  margin-left: 10rpx;
+}

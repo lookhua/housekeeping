@@ -1,1 +1,44 @@
 /**msg.wxss**/
+
+page {
+  background: #f4f3f3;
+  padding: 0px;
+}
+
+.msg-center {
+}
+
+.msg-center-item {
+}
+
+.msg-center-item {
+  background: white;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  padding: 0rpx 40rpx;
+}
+
+.msg-center-item-head {
+  position: relative;
+}
+
+.msg-center-item-head-title {
+  padding: 16rpx 0rpx;
+  color: #222222;
+}
+
+.msg-center-item-head-content {
+  font-size: 30rpx;
+  right: 0rpx;
+  word-break: break-all;
+  color: #b5b5b5;
+}
+
+.msg-center-item-foot {
+  border-top: 1px solid lightgray;
+  font-size: 28rpx;
+  padding: 16rpx 0rpx;
+  text-align: right;
+  color: #7e7e7e;
+  margin-top: 10rpx;
+}

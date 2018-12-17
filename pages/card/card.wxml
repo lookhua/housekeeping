@@ -62,5 +62,10 @@
 </view>
 
 <view class="card-balance-bt-area fix-with">
-  <button class="weui-btn weui-btn_warn" type='warn' bindtap="scanCardNumber">立即预定</button>
+  <view class="add-card-bt">
+    <button class="weui-btn weui-btn_warn" type='warn' bindtap="scanCardNumber">+添加卡</button>
+  </view>
+  <view class="charge-money-bt">
+    <button class=" weui-btn weui-btn_warn" type='warn' bindtap="scanCardNumber">充值</button>
+  </view>
 </view>

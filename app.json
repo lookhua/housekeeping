@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/msg/msg",
     "pages/card/card",
     "pages/index/index",
-    "pages/msg/msg",
     "pages/me/me",
     "pages/login/login",
     "pages/logs/logs"
@@ -26,7 +26,7 @@
       },
       {
         "pagePath": "pages/card/card",
-        "text": "卡券",
+        "text": "会员卡",
         "iconPath": "static/image/dollar3.png",
         "selectedIconPath": "static/image/dollar7.png"
       },
