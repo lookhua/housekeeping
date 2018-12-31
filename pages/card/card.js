@@ -30,7 +30,9 @@ Page({
     })
   },
   moneyReCharge:function(){
-
+    wx.redirectTo({
+      url: 'recharge',
+    })
   },
   onLoad: function() {
     //this.pullUserInfo();

@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/card/recharge",
+    "pages/login/login",
     "pages/index/index",
     "pages/card/card",
     "pages/card/cardbind",
     "pages/msg/msg",
-    "pages/login/login",
     "pages/member/index/index",
     "pages/member/order/orderDetail/orderDetail",
     "pages/member/info/info",

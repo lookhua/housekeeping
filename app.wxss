@@ -19,8 +19,11 @@
   clear: both;
 }
 
-
-
 .fix-with{
   width: 690rpx;
 }
+
+/* .wrap-with-border{
+  border-radius: 5px;
+  background: lightpink;
+} */
