@@ -1,27 +1,32 @@
+<!-- 头像昵称 -->
+<view class='cardbind-top'>
+  <open-data class='head-sculpture' type="userAvatarUrl"></open-data>
+  <open-data class='username' type="userNickName"></open-data>
+</view>
 <view class='content'>
   <view class="page__bd">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <!-- <image class='header-img' src='../../image/man.png'></image> -->
-          <view class="weui-label">当前金额</view>
+          <view class="weui-label">会员手机</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" value='￥{{balance}}' disabled placeholder-class='p-class' />
+          <input class="weui-input" value='{{userMobile}}' disabled placeholder-class='p-class' />
         </view>
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <!-- <image class='header-img' src='../../image/man.png'></image> -->
-          <view class="weui-label">充值金额</view>
+          <view class="weui-label">会员卡号</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" type="digit"  bindinput='change_money' value='' placeholder-class='p-class' />
+          <input class="weui-input" value='' placeholder-class='p-class' placeholder='输入待绑定卡号' />
         </view>
       </view>
     </view>
     <view class="weui-btn-area">
-      <button class="weui-btn" type="" bindtap="showTopTips">微信支付</button>
+      <button class="weui-btn" type="" bindtap="bindCardToUser">立即绑定</button>
     </view>
   </view>
 </view>

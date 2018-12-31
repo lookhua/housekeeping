@@ -66,6 +66,6 @@
     <button class="weui-btn weui-btn_warn" type='warn' bindtap="scanCardNumber">+添加卡</button>
   </view>
   <view class="charge-money-bt">
-    <button class=" weui-btn weui-btn_warn" type='warn' bindtap="scanCardNumber">充值</button>
+    <button class=" weui-btn weui-btn_warn" type='warn' bindtap="moneyReCharge">充值</button>
   </view>
 </view>

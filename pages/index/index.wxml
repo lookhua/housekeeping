@@ -9,7 +9,7 @@
       <image src="{{item.imgUrl}}" class="slide-image" bindtap="slideDetail" data-id="{{item.id}}" />
     </swiper-item>
   </block>
-</swiper>  -->
+</swiper> 
 <swiper class="fix-with" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <swiper-item>
     <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
@@ -20,12 +20,12 @@
   <swiper-item>
     <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
-</swiper>
+</swiper> -->
 
 <!-- space -->
 <view class='area-space'></view>
 
-<!-- buttons -->
+<!-- buttons 
 <view class="index-buttons fix-with">
   <view class="index-buttons-item">
     <image src="../../static/index/mycardbt.png"></image>
@@ -33,16 +33,16 @@
   <view class="index-buttons-item index-buttons-item-right">
     <image src="../../static/index/chageBt.png"></image>
   </view>
-</view>
+</view>-->
 
 <!-- space -->
 <view class='area-space'></view>
 
 <!-- services -->
 <view class="services-area fix-with">
-  <view class="services-area-title">
-    <text>热门服务</text>
-  </view>
+  <!-- <view class="services-area-title">
+    <text>保洁服务</text>
+  </view> -->
   <view class="services-area-body">
     <view class="services-area-body-image-sm">
       <image class="commonbj" src="../../static/index/commonbj.png" />
@@ -52,11 +52,7 @@
     </view>
     <view class='area-space'></view>
     <view class="services-area-body-bt">
-      <button class="weui-btn weui-btn_warn" type='warn'>立即预定</button>
+      <button class="weui-btn weui-btn_warn" type='warn'>立即预约</button>
     </view>
   </view>
-
 </view>
-
-<view class='area-space'></view>
-<view class='area-space'></view>

@@ -58,3 +58,18 @@ picker .weui-input{
   position: relative;
   top: 6rpx;
 }
+.cardbind-top{
+  background-color: white;
+  text-align: center;
+}
+.head-sculpture{
+  overflow: hidden;
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.username{
+  font-size: 28rpx;
+}

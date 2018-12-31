@@ -29,6 +29,10 @@ Page({
     wx.request({
       url: 'http://localhost:8080/advertisement',
       method: "GET",
+      data:{
+        index:1,
+        pageSize:10
+      },
       success: function (res) {
         that.setData({
           advertisements: res.data
@@ -44,7 +48,7 @@ Page({
         // 停止下拉动作
         wx.stopPullDownRefresh();
       }
-    })
+    });
   },
   pullUserInfo: function () {
     var that = this;
