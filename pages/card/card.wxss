@@ -1,5 +1,9 @@
 /**home.wxss**/
 
+page{
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
 
 .card-top {
   width: 690rpx;

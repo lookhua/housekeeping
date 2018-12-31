@@ -45,3 +45,7 @@ swiper {
   width: 690rpx;
   height: 291rpx;
 }
+page{
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}

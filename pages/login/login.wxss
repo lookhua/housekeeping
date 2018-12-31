@@ -1,4 +1,9 @@
 /**index.wxss**/
+page{
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -16,6 +21,31 @@
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 200px;
+.userMobileInnfo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch；;
+}
+
+.userMobileInnfo-title {
+  font-size: 32rpx;
+  padding: 24rpx;
+  text-align: center;
+}
+
+.userMobileInnfo-yzm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid lightgray;
+  padding: 16rpx 0rpx; 
+  font-size: 32rpx;
+}
+.userMobileInnfo-yzm-lable{
+  flex-basis: 120rpx;
+}
+.userMobileInnfo-yzm-mobile{
+}
+.userMobileInnfo-yzm-bt{
+  flex-basis: 120rpx;
 }

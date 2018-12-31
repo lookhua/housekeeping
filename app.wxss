@@ -21,11 +21,6 @@
 
 
 
-page{
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-}
-
 .fix-with{
   width: 690rpx;
 }
