@@ -18,7 +18,11 @@
         <image class="cell-list-item-lfimg" src="/static/order/tessss.png" />
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile">选择服务时长</view>
-          <view class="cell-list-item-text-remark">{{serviceLong}}小时</view>
+          <view class="cell-list-item-text-remark">
+            <picker bindchange="bindPickerChange" value="{{serviceArrayIndex}}" range-key="time" range="{{serviceLongArray}}">
+              <view class="picker">{{serviceLongArray[serviceArrayIndex].time}}小时</view>
+            </picker>
+          </view>
         </view>
         <image class="cell-list-item-rtimg" src="/static/image/select.png" />
       </view>
@@ -26,12 +30,28 @@
       <view class="cell-list-item">
         <image class="cell-list-item-lfimg" src="/static/order/time.png" />
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">选择服务时间</view>
-          <view class="cell-list-item-text-remark">{{serviceDuration}}</view>
+          <view class="cell-list-item-text-tile">选择服务日期</view>
+          <view class="cell-list-item-text-remark">
+            <picker mode="date" bindchange="bindDateChange" value="{{serviceBeginDate}}" start="{{pickerDateStart}}" end="{{pickerDateEnd}}">
+              <view class="picker">{{serviceBeginDate}}</view>
+            </picker>
+          </view>
         </view>
         <image class="cell-list-item-rtimg" src="/static/image/select.png" />
       </view>
 
+      <view class="cell-list-item">
+        <image class="cell-list-item-lfimg" src="/static/image/signin.png" />
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">选择服务时间</view>
+          <view class="cell-list-item-text-remark">
+            <picker mode="time" value="{{serviceBeginTime}}" start="{{pickerTimeStart}}" end="{{pickerTimeEnd}}" bindchange="bindTimeChange">
+              <view class="picker">{{serviceBeginTime}}</view>
+            </picker>
+          </view>
+        </view>
+        <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+      </view>
 
     </view>
   </view>
