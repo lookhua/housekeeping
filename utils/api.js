@@ -6,19 +6,19 @@ var methodToken = ['user.info', 'user.editinfo', 'cart.getlist', 'user.goodscoll
 //接口统一封装
 function api(method,data,callback,show = true){
   //如果是需要登陆的，增加token
-  if (methodToken.indexOf(method)>= 0){
-    var userToken = wx.getStorageSync('userToken');
-    if (!userToken){
-      common.jumpToLogin();
-    }else{
-      data.token = userToken;
-      data.method = method;
-      post(data, callback, show);
-    }
-  }else{
+  // if (methodToken.indexOf(method)>= 0){
+  //   var userToken = wx.getStorageSync('userToken');
+  //   if (!userToken){
+  //     common.jumpToLogin();
+  //   }else{
+  //     data.token = userToken;
+  //     data.method = method;
+  //     post(data, callback, show);
+  //   }
+  // }else{
     data.method = method;
     post(data, callback, show);
-  }
+  // }
   
 }
 

@@ -19,6 +19,6 @@
 
   <view class='add-button'>
     <button bindtap='address'>新增收货地址</button>
-    <button bindtap='wechatAddress'>使用微信地址</button>
+    <!-- <button bindtap='wechatAddress'>使用微信地址</button> -->
   </view>
 </view>

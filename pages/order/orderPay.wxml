@@ -1,2 +1,109 @@
-<!--pages/order/cardbind.wxml-->
-<text>pages/order/cardbind.wxml</text>
+<view class="orderPay-page fix-with">
+
+  <view class="wrap-with-border">
+
+
+    <view class="scell-list-items">
+      <view class="scell-list-item">
+        <image class="scell-list-item-lfimg" src="/static/order/baojiedz.png" />
+        <view class="scell-list-item-text">
+          <view class="scell-list-item-text-tile">{{order.serviceAddr}}</view>
+        </view>
+      </view>
+      <view class="scell-list-item">
+        <image class="scell-list-item-lfimg" src="/static/order/baojietime.png" />
+        <view class="scell-list-item-text">
+          <view class="scell-list-item-text-tile">服务时间：{{order.serverTime}}</view>
+        </view>
+      </view>
+      <view class="scell-list-item">
+        <image class="scell-list-item-lfimg" src="/static/order/baojie.png" />
+        <view class="scell-list-item-text">
+          <view class="scell-list-item-text-tile">系统推荐保洁室</view>
+        </view>
+      </view>
+      <view class="cell-list-item">
+        <view class="cell-list-item-text cell-list-item-text-input">
+          <view class="cell-list-item-text-lable">备注</view>
+          <view class="cell-list-item-text-input">
+            <text>{{order.remark}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cell-list-items">
+
+      <view class="cell-list-item">
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">保洁费用</view>
+          <view class="cell-list-item-text-remark">
+            <text>¥120</text>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="cell-list-item">
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">积分</view>
+          <view class="cell-list-item-text-remark">
+            <text>无</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="cell-list-item">
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">优惠券</view>
+          <view class="cell-list-item-text-remark">
+            <text>无</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="cell-list-item">
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile"></view>
+          <view class="cell-list-item-text-remark">
+            <text>合计：</text>
+            <text class="oder-heji-money">¥{{payMoney}}</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+
+    <view class="cell-list-items">
+      <view class="cell-list-item">
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">
+            <radio-group class="radio-group" bindchange="radioChange">
+              <view>
+                <label class="radio">
+                  <radio value="1" checked="checked" />会员卡支付
+                </label>
+              </view>
+            </radio-group>
+          </view>
+          <view class="cell-list-item-text-remark">
+            <text>共{{wallet.cardCount}}张卡，</text>
+            <text>余额：¥{{wallet.balance}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+</view>
+<view class="page-bottown-toolbar">
+  <view class="page-bottown-toolbar-left">
+    <text>待支付：</text>
+    <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text>
+  </view>
+  <view class="page-bottown-toolbar-right">
+    <button type='warn' bindtap="payFororderConfirm">支付</button>
+  </view>
+</view>

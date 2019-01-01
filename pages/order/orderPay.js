@@ -1,11 +1,19 @@
-// pages/order/cardbind.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    payMoney: 120,
+    order: {
+      remark: '速度点,多带点洗碟精',
+      serviceAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
+      serverTime: '2019-09-18 12:00-13:00'
+    },
+    wallet: {
+      cardCount: 4,
+      balance: 250
+    }
   },
 
   /**

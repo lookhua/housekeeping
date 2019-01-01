@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/order/orderPay",
     "pages/order/orderConfirm",
     "pages/index/index",
     "pages/card/recharge",

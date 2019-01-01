@@ -1,5 +1,5 @@
 <view class="wrap-with-border">
-  <view class="order-service-addr cell-list-item ">
+  <view class="order-service-addr cell-list-item" bindtap='chioceServiceAddr'>
     <image class="cell-list-item-lfimg" src="/static/order/didain.png" />
     <view class="cell-list-item-text">
       <view class="cell-list-item-text-tile">{{serviceAddr}}</view>
@@ -51,6 +51,17 @@
           </view>
         </view>
         <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+      </view>
+
+      <view class="cell-list-item">
+        <image class="cell-list-item-lfimg" src="/static/order/beizhu.png" />
+        <view class="cell-list-item-text cell-list-item-text-input">
+          <view class="cell-list-item-text-lable">备注</view>
+          <view class="cell-list-item-text-input">
+            <input bindinput="orderRmarkInput" placeholder='特殊要求'>{{orderRmark}}</input>
+          </view>
+        </view>
+         <image class="cell-list-item-rtimg" src="" />
       </view>
 
     </view>

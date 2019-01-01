@@ -22,12 +22,16 @@ page{
   justify-content: space-around;
   align-items: center;
 }
+
 .cell-list-item-text{
   width: 540rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.cell-list-item-text-input{
+  justify-content: flex-start;
 }
 .cell-list-item-text-tile{
   text-align: left;
@@ -36,6 +40,17 @@ page{
 }
 .cell-list-item-text-remark{
   text-align: right;
+  font-size: 26rpx;
+  color:  #8f8f8f;
+}
+.cell-list-item-text-lable{
+  text-align: left;
+  font-size: 26rpx;
+  width: 60rpx;
+  color: black;
+}
+.cell-list-item-text-input{
+  text-align: left;
   font-size: 26rpx;
   color:  #8f8f8f;
 }
@@ -49,7 +64,6 @@ page{
   width: 20rpx;
   height: 30rpx;
 }
-
 
 .order-service-addr{
   height: 200rpx;
