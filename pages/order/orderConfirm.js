@@ -1,60 +1,36 @@
-// pages/member/remainingSum/withdrawCash/recharge.js
 const app = getApp(); //获取全局app.js
-
+const util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    rechargeItemList: [{
-      id: 123,
-      chong: "100",
-      song: "150"
-    }, {
-      id: 124,
-      chong: "200",
-      song: "250"
-    }, {
-      id: 125,
-      chong: "300",
-      song: "350"
-    }, {
-      id: 126,
-      chong: "400",
-      song: "450"
-    }, {
-      id: 127,
-      chong: "500",
-      song: "550"
-    }, {
-      id: 128,
-      chong: "600",
-      song: "650"
-    }],
-    needPay: 0,
-    realRecharge: 0,
-    inputMonney: null,
-    itemSelected: ''
+    payMoney: 0,
+    payMoneyTip: '不包含其他费用',
+    serviceAddr: '安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室',
+    serviceLong: 3,
+    serviceDuration: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     if (app.globalData.userInfo) {
       wx.navigateTo({
         url: '../login/login'
       })
     };
+    var dura = util.formatTime(Date.now())
     this.setData({
-      userInfo: userInfo,
+      serviceDuration: dura
     });
 
   },
 
   //选择套餐
-  chioceRechargeItem: function (e) {
+  chioceOrderConfirmItem: function(e) {
     var page = this;
     var itemId = e.currentTarget.dataset.id;
     var chong = e.currentTarget.dataset.chong;
@@ -62,23 +38,23 @@ Page({
     this.setData({
       needPay: chong,
       inputMonney: null,
-      realRecharge: song,
+      realOrderConfirm: song,
       itemSelected: itemId
     });
   },
 
   //输入金额
-  realRechargeInput: function (e) {
+  realOrderConfirmInput: function(e) {
     var money = e.detail.value;
     this.setData({
       needPay: money,
-      realRecharge: money,
+      realOrderConfirm: money,
       itemSelected: ''
     });
   },
 
   //充值支付
-  payForRecharge: function () {
+  payFororderConfirm: function() {
     var page = this;
     var userId = app.globalData.userInfo.id;
     if (!this.data.itemSelected && !this.data.inputMonney) {
@@ -90,7 +66,7 @@ Page({
       itemSelected: this.data.itemSelected,
       inputMoney: this.data.inputMonney
     };
-    app.api.post2('user/charge',data, function (res) {
+    app.api.post2('user/charge', data, function(res) {
       if (res.status) {
         wx.requestPayment({
           'timeStamp': '' + res.data.timeStamp,
@@ -98,14 +74,14 @@ Page({
           'package': res.data.package,
           'signType': res.data.signType,
           'paySign': res.data.paySign,
-          'success': function (e) {
+          'success': function(e) {
             if (e.errMsg == "requestPayment:ok") {
               app.common.errorToBack('支付成功');
             } else if (res.errMsg == 'requestPayment:cancel') {
               app.common.errorToShow('支付已取消');
             }
           },
-          'fail': function (e) {
+          'fail': function(e) {
             app.common.errorToShow('支付失败请重新支付');
           }
         });

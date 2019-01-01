@@ -4,51 +4,42 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    bindMobile: ''
   },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+  //输入金额
+  mobileInputFun: function(e) {
+    var bindMobile = e.detail.value;
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+      bindMobile: bindMobile
+    });
+  },
+  bindMobileToUser: function(e) {
+    var mobileInput = this.data.bindMobile;
+    if (!mobileInput) {
+      app.common.errorToShow("请输入正确的手机号");
+      return false;
+    }
+    var userId = wx.getStorageSync("userId")
+    console.log("userId get in login page is "+userId)
+    if (!userId) {
+      app.userWxSessionCheck();
+      return false;
+    }
+    var data = {
+      mobile: mobileInput,
+      userId: userId
+    };
+    app.requestUrl('user/bind/mobile', data, 'POST', function(res) {
+      console.log("bind mobile is success "+ res.userId);
+      console.log("bind mobile is success " + res.mobile);
+      wx.setStorageSync('userMobile', res.mobile);
+      wx.navigateTo({
+        url: '../index/index'
+      })
+    }, function() {
+      app.common.errorToShow("请求失败");
+    }, true);
+    
   }
+
 })

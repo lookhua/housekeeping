@@ -7,7 +7,7 @@
     <view class='news-coupons-mid' wx:if="{{rechargeItemList.length > 0}}">
       <view class='coupons'>
         <block wx:for="{{rechargeItemList}}" wx:key="{{index}}" wx:for-index="index" wx:for-item="item">
-          <view class="coupons-item {{index==cur?'':''}}" 
+          <view class="{{itemSelected==item.id?'coupons-item-selected':''}} coupons-item" 
           bindtap='chioceRechargeItem' data-id="{{item.id}}" data-chong="{{item.chong}}" data-song="{{item.song}}">
             <view class='coupons-item-chong'>
               <text>冲</text>
@@ -35,7 +35,7 @@
             <view class="weui-label">输入金额</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" type='number' bindinput="realRechargeInput" placeholder-class='p-class' placeholder='输入充值金额' />
+            <input class="weui-input" value='{{inputMonney}}' type='number' bindinput="realRechargeInput" placeholder-class='p-class' placeholder='输入充值金额' />
           </view>
         </view>
       </view>
@@ -66,7 +66,7 @@
   </view>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" type="warn" bindtap="bindCardToUser">立即充值</button>
+    <button class="weui-btn" type="warn" bindtap="payForRecharge">立即充值</button>
   </view>
 
 </view>

@@ -1,0 +1,47 @@
+<view class="wrap-with-border">
+  <view class="order-service-addr cell-list-item ">
+    <image class="cell-list-item-lfimg" src="/static/order/didain.png" />
+    <view class="cell-list-item-text">
+      <view class="cell-list-item-text-tile">{{serviceAddr}}</view>
+      <view class="cell-list-item-text-remark"></view>
+    </view>
+    <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+  </view>
+</view>
+
+<view class="orderConfirm-page fix-with">
+
+  <view class="wrap-with-border">
+    <view class="cell-list-items">
+
+      <view class="cell-list-item">
+        <image class="cell-list-item-lfimg" src="/static/order/tessss.png" />
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">选择服务时长</view>
+          <view class="cell-list-item-text-remark">{{serviceLong}}小时</view>
+        </view>
+        <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+      </view>
+
+      <view class="cell-list-item">
+        <image class="cell-list-item-lfimg" src="/static/order/time.png" />
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">选择服务时间</view>
+          <view class="cell-list-item-text-remark">{{serviceDuration}}</view>
+        </view>
+        <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+      </view>
+
+
+    </view>
+  </view>
+</view>
+<view class="page-bottown-toolbar">
+  <view class="page-bottown-toolbar-left">
+    <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text>
+    <text class='page-bottown-toolbar-left-tip'>{{payMoneyTip}}</text>
+  </view>
+  <view class="page-bottown-toolbar-right">
+    <button type='warn' bindtap="payFororderConfirm">立即预约</button>
+  </view>
+</view>

@@ -64,13 +64,14 @@ function post(data,callback,show){
 
 //post直接请求
 function post2(path, data, callback, show = true) {
+  debugger
   if (show) {
     wx.showLoading({
       title: '载入中...'
     });
   }
   wx.request({
-    url: config.api_url + 'api/' + path,
+    url: config.api_url + '/' + path,
     data: data,
     method: 'POST',
     success: function (res) {

@@ -15,15 +15,63 @@
   height: 20rpx;
   clear: both;
 }
+
 .area-clean {
   clear: both;
 }
 
-.fix-with{
+.fix-with {
   width: 690rpx;
+}
+
+.head-sculpture {
+  overflow: hidden;
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.username {
+  font-size: 28rpx;
 }
 
 /* .wrap-with-border{
   border-radius: 5px;
   background: lightpink;
 } */
+
+.page-bottown-toolbar {
+  position: fixed;
+  height: 46px;
+  width: 100%;
+  bottom: 0px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.page-bottown-toolbar-left {
+  width: 68%;
+  font-size: 32rpx;
+  padding-left: 40rpx;
+}
+
+.page-bottown-toolbar-left-imp {
+  font-size: 46rpx;
+  color: red;
+}
+
+.page-bottown-toolbar-left-tip {
+  font-size: 24rpx;
+  color: lightgray;
+}
+
+.page-bottown-toolbar-right {
+  width: 32%;
+}
+
+.page-bottown-toolbar-right button {
+  border-radius: 0px;
+}

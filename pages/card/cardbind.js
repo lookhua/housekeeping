@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userMobile: '15255108906',
     cardNumber: '阿擦边'
   },
 
@@ -15,13 +14,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (app.globalData.userInfo) {
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    };
+   
+  },
+
+  cardNumInput:function(e){
+    var cardNumber = e.detail.value;
     this.setData({
-      userInfo: userInfo,
+      cardNumber: cardNumber
     });
   },
 
@@ -32,12 +31,13 @@ Page({
       app.common.errorToShow("请输入正确的卡号");
       return false;
     }
+    console.log("current card num is " + page.data.cardNumber);
+    var userId = wx.getStorageSync('userId');
+    console.log("current card num userid is " + userId);
 
     var data = {
-      openid: 'openid',
-      userId: 'dfweee',
-      userMobile: 'wechatpay',
-      cardNumber: 2
+      userId: userId,
+      userMobile: page.data.cardNumber
     };
 
     
