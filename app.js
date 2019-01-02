@@ -87,7 +87,10 @@ App({
       }
     })
   },
-
+  //获取当前用户id
+  getUserId:function(){
+    return wx.getStorageSync('userId');
+  },
   //post直接请求
   requestUrl: function (path, data, method, callback, dealError, show = true) {
     if (show) {
@@ -110,22 +113,17 @@ App({
           wx.hideLoading();
         }
         //这里做判断，如果不报错就返回，如果报错，就做错误处理
-        callback(res.data);
-        // if (res.data.status) {
-        //   callback(res.data);
-        // } else {
-        //   dealError(res.data, callback,{});
-        // }
+        if (res.code == 0) {
+           callback(res);
+         } else {
+           dealError(res);
+         }
       },
       fail: function(res) {
         if (show) {
           wx.hideLoading();
         }
-        return {
-          status: false,
-          data: res.data,
-          msg: '接口调用失败',
-        };
+        common.errorToBack('接口调用失败');
       },
       complete: function(res) {
         if (show) {
@@ -133,22 +131,6 @@ App({
         }
       }
     });
-  }, //requestUrl
-
-  dealError: function(res, callback, postData) {
-    switch (res.data) {
-      case 14007: //token验证失败，需要从新登录
-        //判断是否是需要登陆的接口
-        if (methodToken.indexOf(postData.method) >= 0) {
-          common.jumpToLogin();
-        }
-        break;
-      case 2:
-        ;
-        break;
-      default:
-        callback(res);
-    }
-  } //dealError
+  }
 
 })

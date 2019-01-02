@@ -4,7 +4,23 @@ const app = getApp(); //获取全局app.js
 Page({
   //页面的初始数据
   data: {
-    address: [],
+    address: [{
+      id: 1,
+      name: 'wfa',
+      mobile: '',
+      region: ['安徽省', '合肥市', '政务区'],
+      areaId: 410102,
+      address: 'asfasdf',
+      is_def: 1
+    }, {
+        id: 2,
+        name: 'sfs',
+        mobile: '',
+        region: ['安徽省', '合肥市', '政务区'],
+        areaId: 410102,
+        address: 'sfasf',
+        is_def: 2
+      }],
     select: 'false'
   },
 
@@ -12,7 +28,7 @@ Page({
   //新增收货地址跳转
   address: function() {
     wx.navigateTo({
-      url: '../address/address',
+      url: '../address/editAddress',
     });
   },
 

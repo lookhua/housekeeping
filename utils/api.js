@@ -89,11 +89,7 @@ function post2(path, data, callback, show = true) {
       if (show) {
         wx.hideLoading();
       }
-      return {
-        status: false,
-        data: res.data,
-        msg: '接口调用失败',
-      };
+      common.e
     },
     complete: function (res) {
 
