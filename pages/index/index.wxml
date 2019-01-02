@@ -52,7 +52,7 @@
     </view>
     <view class='area-space'></view>
     <view class="services-area-body-bt">
-      <button class="weui-btn weui-btn_warn" type='warn'>立即预约</button>
+      <button class="weui-btn weui-btn_warn" type='warn' bindtap="gotoOrderConfirm">立即预约</button>
     </view>
   </view>
 </view>

@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    bindMobile: ''
+    bindMobile: '15255108906'
   },
   //输入金额
   mobileInputFun: function(e) {
@@ -29,10 +29,10 @@ Page({
       mobile: mobileInput,
       userId: userId
     };
-    app.requestUrl('user/bind/mobile', data, 'POST', function(res) {
-      console.log("bind mobile is success "+ res.userId);
-      console.log("bind mobile is success " + res.mobile);
-      wx.setStorageSync('userMobile', res.mobile);
+    app.requestUrl('wxapi/user/bindmobile', data, 'POST', function(res) {
+      console.log("bind use id is success "+ res.data.id);
+      console.log("bind user mobile is success " + res.data.phone);
+      wx.setStorageSync('userMobile', res.data.phone);
       wx.navigateTo({
         url: '../index/index'
       })

@@ -109,44 +109,11 @@ Page({
     });
   },
 
-  //充值支付
+  //预约
   payFororderConfirm: function () {
-    var page = this;
-    var userId = app.globalData.userInfo.id;
-    if (!this.data.itemSelected && !this.data.inputMonney) {
-      app.common.errorToShow("请输入正确的金额或者选择充值套餐");
-      return false;
-    }
-    var data = {
-      userId: userId,
-      itemSelected: this.data.itemSelected,
-      inputMoney: this.data.inputMonney
-    };
-    app.api.post2('user/charge', data, function (res) {
-      if (res.status) {
-        wx.requestPayment({
-          'timeStamp': '' + res.data.timeStamp,
-          'nonceStr': res.data.nonceStr,
-          'package': res.data.package,
-          'signType': res.data.signType,
-          'paySign': res.data.paySign,
-          'success': function (e) {
-            if (e.errMsg == "requestPayment:ok") {
-              app.common.errorToBack('支付成功');
-            } else if (res.errMsg == 'requestPayment:cancel') {
-              app.common.errorToShow('支付已取消');
-            }
-          },
-          'fail': function (e) {
-            app.common.errorToShow('支付失败请重新支付');
-          }
-        });
-      } else {
-        app.common.errorToShow('支付订单出现问题，请返回重新操作');
-      }
-    });
-
-
+    wx.navigateTo({
+      url: '../order/orderPay'
+    })
   }
 
 

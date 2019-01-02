@@ -90,7 +90,7 @@ Page({
       itemSelected: this.data.itemSelected,
       inputMoney: this.data.inputMonney
     };
-    app.api.post2('user/charge',data, function (res) {
+    app.requestUrl('user/charge',data, function (res) {
       if (res.status) {
         wx.requestPayment({
           'timeStamp': '' + res.data.timeStamp,

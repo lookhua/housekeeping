@@ -104,6 +104,6 @@
     <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text>
   </view>
   <view class="page-bottown-toolbar-right">
-    <button type='warn' bindtap="payFororderConfirm">支付</button>
+    <button type='warn' bindtap="payOrder">支付</button>
   </view>
 </view>

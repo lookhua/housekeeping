@@ -70,5 +70,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  payOrder:function(){
+    wx.navigateTo({
+      url: '../member/order/orderList/orderList'
+    })
   }
+
 })

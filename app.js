@@ -12,10 +12,7 @@ App({
     //var logs = wx.getStorageSync('logs') || []
     //logs.unshift(Date.now())
     //wx.setStorageSync('logs', logs)
-
-    //wx登录session check
-    this.userWxSessionCheck();
-
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -25,7 +22,8 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
+              //wx登录session check
+              this.userWxSessionCheck();
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -49,16 +47,18 @@ App({
         //checkuserid
         var userId = wx.getStorageSync('userId');
         console.log("userId is " + userId)
-        if (!userId) {
+        var userToken = wx.getStorageSync('userToken');
+        console.log("userToken is " + userToken)
+        if (!userId || !userToken) {
           this.newUserLogIn();
         }
         //checkmobile
         var mobile = wx.getStorageSync('userMobile')
-        if (!mobile) {
-          wx.navigateTo({
-            url: '../login/login'
-          })
-        }
+         if (!mobile) {
+           wx.navigateTo({
+             url: '../login/login'
+           })
+         }
       },
       fail: res => {
         this.newUserLogIn();
@@ -73,12 +73,16 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var url = this.config.api_url;
+        var nickName = this.globalData.userInfo.nickName;
+        console.log("nickname is " + nickName);
         var data = {
-          code: res.code
+          code: res.code,
+          nickName: nickName
         };
-        this.requestUrl('code/touser', data, 'GET', function(res) {
-          wx.setStorageSync('userId', res.data.userId);
-          wx.setStorageSync('userMobile', res.data.userMobile);
+        this.requestUrl('user/code2session', data, 'GET', function(res) {
+          wx.setStorageSync('userId', res.data.id);
+          wx.setStorageSync('userMobile', res.data.phone);
+          wx.setStorageSync('userToken', res.data.token);
         },this.dealError);
       }
     })
@@ -91,9 +95,15 @@ App({
         title: '载入中...'
       });
     }
+    var userToken = wx.getStorageSync('userToken');
+    var head = { 
+      token: userToken, 
+      'content-type': 'application/x-www-form-urlencoded' 
+    };
     wx.request({
-      url: this.config.api_url + '/' + path,
+      url: this.config.api_url + '' + path,
       data: data,
+      header: head,
       method: method,
       success: function(res) {
         if (show) {

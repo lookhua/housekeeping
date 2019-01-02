@@ -1,4 +1,4 @@
-page{
+page {
   background: #f1f2f6;
 }
 
@@ -6,14 +6,13 @@ page{
   margin: 0 auto;
 }
 
-
 /**************************** small cell list ***************************/
 
-.scell-list-items{
+.scell-list-items {
   margin: 40rpx 0rpx;
 }
 
-.scell-list-item{
+.scell-list-item {
   position: relative;
   height: 100rpx;
   font-size: 28rpx;
@@ -25,38 +24,43 @@ page{
   align-items: center;
 }
 
-.scell-list-item-text{
+.scell-list-item-text {
   width: 540rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.scell-list-item-text-input{
+
+.scell-list-item-text-input {
   justify-content: flex-start;
 }
-.scell-list-item-text-tile{
+
+.scell-list-item-text-tile {
   text-align: left;
   font-size: 26rpx;
-  color:  #140909;
+  color: #140909;
 }
-.scell-list-item-text-remark{
+
+.scell-list-item-text-remark {
   text-align: right;
   font-size: 26rpx;
-  color:  #8f8f8f;
+  color: #8f8f8f;
 }
-.scell-list-item-lfimg{
+
+.scell-list-item-lfimg {
   display: block;
   width: 30px;
   height: 36px;
 }
 
 /********************************************/
-.cell-list-items{
+
+.cell-list-items {
   margin: 40rpx 0rpx;
 }
 
-.cell-list-item{
+.cell-list-item {
   position: relative;
   height: 100rpx;
   font-size: 28rpx;
@@ -68,46 +72,51 @@ page{
   align-items: center;
 }
 
-.cell-list-item-text{
+.cell-list-item-text {
   width: 100%;
-  margin:0rpx 30rpx;
+  margin: 0rpx 30rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.cell-list-item-text-input{
+
+.cell-list-item-text-input {
   justify-content: flex-start;
 }
-.cell-list-item-text-tile{
+
+.cell-list-item-text-tile {
   text-align: left;
   font-size: 26rpx;
   color: black;
 }
-.cell-list-item-text-remark{
+
+.cell-list-item-text-remark {
   text-align: right;
   font-size: 26rpx;
-  color:  #8f8f8f;
+  color: #8f8f8f;
 }
-.cell-list-item-text-lable{
+
+.cell-list-item-text-lable {
   text-align: left;
   font-size: 26rpx;
   width: 60rpx;
   color: black;
 }
-.cell-list-item-text-input{
+
+.cell-list-item-text-input {
   text-align: left;
   font-size: 26rpx;
-  color:  #8f8f8f;
+  color: #8f8f8f;
 }
-
-
 
 /**********************其他*********************/
-.oder-heji-money{
+
+.oder-heji-money {
   font-size: 46rpx;
-  color:black;
+  color: black;
 }
-.radio-group{
-  margin-left:30rpx; 
+
+.radio-group {
+  margin-left: 10rpx;
 }

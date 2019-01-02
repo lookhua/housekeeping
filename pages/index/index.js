@@ -77,6 +77,11 @@ Page({
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     this.pullUserInfo();
+  },
+  gotoOrderConfirm:function(){
+    wx.navigateTo({
+      url: '../order/orderConfirm'
+    })
   }
 
 })
