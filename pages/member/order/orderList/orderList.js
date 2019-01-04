@@ -9,7 +9,19 @@ Page({
     pendingdelivery: false,
     goodstobereceived: false,
     tobeevaluated: false,
-    order: [], //订单列表
+    order: [{
+      order_id:1,
+      price: 123,
+      mktprice: 123,
+      nums: 12,
+      name: 213
+    }, {
+        order_id: 2,
+      price: 123,
+      mktprice: 123,
+      nums: 12,
+      name: 213
+    }], //订单列表
     page: 1, //当前页
     limit: 10, //每页显示几条
     ajaxStatus: true,
@@ -22,14 +34,15 @@ Page({
   },
 
   //加载执行
-  onLoad: function (e) {
+  onLoad: function(e) {
+    var _etype = e.type || 'all';
     this.setData({
-      etype: e.type
+      etype: _etype
     });
   },
 
   //刷新页面
-  onShow: function () {
+  onShow: function() {
     var page = this;
     switch (page.data.etype) {
       case 'all': //全部订单列表
@@ -54,7 +67,7 @@ Page({
   },
 
   //全部订单
-  all: function (e) {
+  all: function(e) {
     this.setData({
       order: [],
       page: 1,
@@ -70,7 +83,7 @@ Page({
   },
 
   //待支付订单
-  pendingpayment: function (e) {
+  pendingpayment: function(e) {
     this.setData({
       order: [],
       page: 1,
@@ -86,7 +99,7 @@ Page({
   },
 
   //待发货订单
-  pendingdelivery: function (e) {
+  pendingdelivery: function(e) {
     this.setData({
       order: [],
       page: 1,
@@ -102,7 +115,7 @@ Page({
   },
 
   //待收货订单
-  goodstobereceived: function (e) {
+  goodstobereceived: function(e) {
     this.setData({
       order: [],
       page: 1,
@@ -118,7 +131,7 @@ Page({
   },
 
   //待评价订单
-  tobeevaluated: function (e) {
+  tobeevaluated: function(e) {
     this.setData({
       order: [],
       page: 1,
@@ -134,30 +147,31 @@ Page({
   },
 
   //获取订单数据
-  getOrderList: function () {
+  getOrderList: function() {
     var page = this;
     var data = {};
-    app.db.userToken(function (token) {
+    app.db.userToken(function(token) {
       data['page'] = page.data.page;
       data['limit'] = page.data.limit;
-      if(page.data.status != 'all'){
+      if (page.data.status != 'all') {
         data['status'] = page.data.status;
       }
-      app.api.orderList(data, function (res) {
-        var orderList = page.dataFormat(res.data.list);
+      app.api.orderList(data, function(res) {
+        var _list = res.data.list || [];
+        var orderList = page.dataFormat(_list);
         var c = page.data.order.concat(orderList);
-        var p = res.data.page*1+1;
+        var p = res.data.page * 1 + 1;
         var allpage = Math.ceil(res.data.count / res.data.limit * 1);
         var lc = false;
         var lo = true;
-        if(allpage < p){
+        if (allpage < p) {
           lc = true;
         }
         if (lc == true) {
           lo = false;
         }
         var nodata = false;
-        if(c.length < 1){
+        if (c.length < 1) {
           nodata = true;
           lc = false;
         }
@@ -175,7 +189,7 @@ Page({
   },
 
   //数据格式处理
-  dataFormat: function (data) {
+  dataFormat: function(data) {
     for (var i = 0; i < data.length; i++) {
       var countnum = 0
       for (var j = 0; j < data[i].items.length; j++) {
@@ -188,7 +202,7 @@ Page({
   },
 
   //上拉加载
-  lower: function () {
+  lower: function() {
     var page = this;
     page.setData({
       toView: 'loading'
@@ -197,14 +211,14 @@ Page({
       page.setData({
         ajaxStatus: false
       });
-      setTimeout(function () {
+      setTimeout(function() {
         page.getOrderList()
       }, 1000);
     }
   },
 
   //刷新页面
-  refresh: function () {
+  refresh: function() {
     var page = this;
     if (page.data.all) {
       page.all();
@@ -220,22 +234,22 @@ Page({
   },
 
   //取消订单
-  cancelOrder: function (e) {
+  cancelOrder: function(e) {
     var page = this;
-    app.db.userToken(function (token) {
+    app.db.userToken(function(token) {
       wx.showModal({
         title: '确认取消订单？',
         content: '您确认取消订单：' + e.target.dataset.id + '吗？',
-        success: function (ee) {
+        success: function(ee) {
           if (ee.confirm) {
             var data = {
               order_ids: e.target.dataset.id
             }
-            app.api.cancelOrder(data, function (res) {
+            app.api.cancelOrder(data, function(res) {
               wx.showToast({
                 title: res.msg,
                 duration: 3000,
-                complete: function () {
+                complete: function() {
                   page.refresh();
                 }
               });
@@ -247,20 +261,20 @@ Page({
   },
 
   //确认签收
-  confirm: function (e) {
+  confirm: function(e) {
     var page = this;
     var data = {
       order_id: e.target.dataset.id
     }
-    app.db.userToken(function (token) {
-      app.api.confirm(data, function (res) {
+    app.db.userToken(function(token) {
+      app.api.confirm(data, function(res) {
         wx.showModal({
           title: '确认签收成功，现在去评价？',
           content: '确认签收订单：' + res.data + '成功，现在去评价订单？',
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
-                  url: '../comment/comment?order_id=' + e.target.dataset.id,
+                url: '../comment/comment?order_id=' + e.target.dataset.id,
               });
             } else if (res.cancel) {
               page.refresh();
@@ -272,7 +286,7 @@ Page({
   },
 
   //立即付款
-  payment: function (e) {
+  payment: function(e) {
     var data = {
       order_id: e.target.dataset.id,
       order_amount: e.target.dataset.amount
@@ -283,7 +297,7 @@ Page({
   },
 
   //查看订单
-  showOrder: function (e) {
+  showOrder: function(e) {
     var order_id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../orderDetail/orderDetail?order_id=' + order_id
@@ -291,7 +305,7 @@ Page({
   },
 
   //申请售后
-  aftermarket: function (e) {
+  aftermarket: function(e) {
     var order_id = e.target.dataset.id;
     wx.navigateTo({
       url: '../aftersales/add?order_id=' + order_id
@@ -299,7 +313,7 @@ Page({
   },
 
   //去评价
-  evaluation: function (e) {
+  evaluation: function(e) {
     var order_id = e.target.dataset.id;
     wx.navigateTo({
       url: '../comment/comment?order_id=' + order_id,

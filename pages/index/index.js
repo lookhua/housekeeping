@@ -72,12 +72,20 @@ Page({
       }
     })
   },
+  
   // 下拉刷新
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     this.pullUserInfo();
   },
+  /**
+ * 页面上拉触底事件的处理函数
+ */
+  onReachBottom: function () {
+    console.log("you are nin fa sfwe ");
+  },
+
   gotoOrderConfirm:function(){
     wx.navigateTo({
       url: '../order/orderConfirm'

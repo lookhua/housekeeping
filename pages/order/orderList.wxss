@@ -1,0 +1,123 @@
+page {
+  background: #f1f2f6;
+}
+
+.scroll-item {
+  height: 100rpx;
+  background: rebeccapurple;
+  margin: 20rpx 0;
+  color: white;
+  text-align: center;
+}
+
+.red {
+  font-size: 32rpx;
+  color:  #ff3b44;
+  border-bottom: 4rpx solid #ff3b44;
+}
+
+.top-tab-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  background: white;
+  margin-bottom: 10rpx;
+}
+
+.top-tab-menu {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 18rpx 0;
+}
+
+.order-list-items {
+  font-size: 24rpx;
+}
+
+.order-list-item {
+  background: white;
+  margin-bottom: 10rpx;
+}
+
+.order-list-item-head {
+  position: relative;
+  height: 80rpx;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.order-list-item-head-lfimg {
+  display: block;
+  width: 40rpx;
+  height: 48rpx;
+}
+
+.order-list-item-head-text {
+  width: 600rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.order-list-item-head-text-title {
+  color: #363d4f;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.order-list-item-head-text-remark {
+  color: #f33f3e;
+}
+
+.order-list-item-body {
+  font-size: 28rpx;
+  margin: 28rpx 0;
+}
+
+.order-list-item-body-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 4rpx 36rpx;
+}
+
+.order-list-item-body-lfimg {
+  margin-right: 16rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.order-list-item-body-line-title {
+  color: #949ea3;
+}
+
+.order-list-item-body-line-content {
+  color: #363d4f;
+  font-weight: bold;
+  word-wrap: break-word;
+  width: 480rpx;
+}
+
+.order-list-item-foot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rpx 20rpx 36rpx;
+}
+
+.order-list-item-foot-left {
+  font-size: 28rpx;
+  color: #949ea3;
+}
+
+.order-list-item-foot button {
+  font-size: 28rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单中心",
+  "backgroundColor": "#fc74ac",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":50
+}

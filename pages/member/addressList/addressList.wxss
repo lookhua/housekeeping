@@ -9,7 +9,7 @@ page{
   position: relative;
   font-size: 26rpx;
   box-sizing: border-box;
-  margin-bottom: 10rpx;
+  margin: 10rpx 0;
 }
 .orderadd-header{
   overflow: hidden;
@@ -20,14 +20,14 @@ page{
     background-color: #ef4f4f;
     color: #fff;
     padding: 6rpx 12rpx;
-    border-radius: 20rpx;
+    border-radius: 18rpx;
     font-size: 24rpx;
 }
 .orderadd-header-tag-green{
     background-color: #04be02;
     color: #fff;
     padding: 6rpx 12rpx;
-    border-radius: 20rpx;
+    border-radius: 18rpx;
     font-size: 24rpx;
 }
 .orderadd-header-del{
@@ -68,14 +68,17 @@ page{
   position: fixed;
   bottom: 0;
   background-color: #fff;
-  padding: 20rpx 20rpx 14rpx;
+  padding: 12rpx 12rpx;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 .add-button button{
-  height: 66rpx;
-  line-height: 66rpx;
+  height: 68rpx;
+  line-height: 68rpx;
   font-size: 26rpx;
   text-align: center;
   width: 48%;
@@ -83,7 +86,4 @@ page{
   color: #666;
   display: inline-block;
   border-right: 2rpx solid #e0e0e0 !important;
-}
-.add-button button:last-child{
-    float: right; 
 }

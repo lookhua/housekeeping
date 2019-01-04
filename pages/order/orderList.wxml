@@ -1,0 +1,63 @@
+<scroll-view class="scroll-items">
+
+  <!-- <block wx:for="{{scrollItems}}" wx:key="{{index}}">
+    <view class="scroll-item">{{item}}</view>
+  </block> -->
+  <view class='top-tab-area'>
+    <view data-tagId='1' bindtap='topMenuTap' class="top-tab-menu {{tabselected==1?'red':''}}">预约中</view>
+    <view data-tagId='2' bindtap='topMenuTap' class="top-tab-menu {{tabselected==2?'red':''}}">待服务</view>
+    <view data-tagId='3' bindtap='topMenuTap' class="top-tab-menu {{tabselected==3?'red':''}}">待支付</view>
+    <view data-tagId='4' bindtap='topMenuTap' class="top-tab-menu {{tabselected==4?'red':''}}">待评价</view>
+    <view data-tagId='0' bindtap='topMenuTap' class="top-tab-menu {{tabselected==0?'red':''}}">全部</view>
+  </view>
+  <view class='order-list-items' wx:for="{{orderList}}">
+    <view class="order-list-item ">
+      <view class="order-list-item-head ">
+        <image class='order-list-item-head-lfimg' src="/static/order/ordertip.png"></image>
+        <view class='order-list-item-head-text'>
+          <view class='order-list-item-head-text-title'>日常保洁</view>
+          <view class='order-list-item-head-text-remark'>已取消</view>
+        </view>
+      </view>
+      <view class="order-list-item-body">
+        <view class='order-list-item-body-line'>
+          <image class='order-list-item-body-lfimg' src="/static/order/didian1.png"></image>
+          <text class='order-list-item-body-line-title'>服务时间：</text>
+          <text class='order-list-item-body-line-content'>{{item.serviceBeginTime}}</text>
+        </view>
+        <view class='order-list-item-body-line'>
+          <image class='order-list-item-body-lfimg' src="/static/order/didain.png"></image>
+          <text class='order-list-item-body-line-title'>服务地址：</text>
+          <text class='order-list-item-body-line-content'>{{item.serverAddr}}</text>
+        </view>
+        <view class='order-list-item-body-line'>
+          <image class='order-list-item-body-lfimg' src="/static/order/bz1.png"></image>
+          <text class='order-list-item-body-line-title'>预约备注：</text>
+          <text class='order-list-item-body-line-content'>{{item.remark}}</text>
+        </view>
+      </view>
+      <view class="order-list-item-foot">
+        <view class="order-list-item-foot-left">
+          <text class='order-list-item-foot-left-tip'>小计金额：</text>
+          <text class='order-list-item-foot-left-imp'>¥{{item.payMoney}}</text>
+        </view>
+        <view wx:if="{{tabselected==1}}">
+          <button data-tagId='1' data-index='{{index}}'  bindtap='optOder'>订单详情</button>
+        </view>
+        <view wx:elif="{{tabselected==2}}">
+          <button data-tagId='2' data-index='{{index}}'  bindtap='optOder'>订单详情</button>
+        </view>
+        <view wx:elif="{{tabselected==3}}">
+          <button type='warn' data-tagId='3' data-index='{{index}}'  bindtap='optOder'>支付</button>
+        </view>
+        <view wx:elif="{{tabselected==4}}">
+          <button data-tagId='4' data-index='{{index}}' bindtap='optOder'>评价</button>
+        </view>
+        <view wx:else>
+          <button data-tagId='0' data-index='{{index}}'  bindtap='optOder'>订单详情</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</scroll-view>

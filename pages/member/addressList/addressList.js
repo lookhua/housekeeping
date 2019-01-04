@@ -6,17 +6,19 @@ Page({
   data: {
     address: [{
       id: 1,
-      name: 'wfa',
+      name: '陆先生',
       mobile: '',
       region: ['安徽省', '合肥市', '政务区'],
       areaId: 410102,
+      area_name: '安徽省合肥市政务区',
       address: 'asfasdf',
       is_def: 1
     }, {
         id: 2,
-        name: 'sfs',
+        name: '宋先生',
         mobile: '',
         region: ['安徽省', '合肥市', '政务区'],
+        area_name: '安徽省合肥市政务区',
         areaId: 410102,
         address: 'sfasf',
         is_def: 2
