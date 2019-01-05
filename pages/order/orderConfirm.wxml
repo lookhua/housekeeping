@@ -32,7 +32,7 @@
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile">选择服务日期</view>
           <view class="cell-list-item-text-remark">
-            <picker mode="date" bindchange="bindDateChange" value="{{serviceBeginDate}}" start="{{pickerDateStart}}" end="{{pickerDateEnd}}">
+            <picker mode="date" bindchange="bindDateChange" value="{{serviceBeginDate}}" start="{{formInit.pickerDateStart}}" end="{{formInit.pickerDateEnd}}">
               <view class="picker">{{serviceBeginDate}}</view>
             </picker>
           </view>
@@ -45,7 +45,7 @@
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile">选择服务时间</view>
           <view class="cell-list-item-text-remark">
-            <picker mode="time" value="{{serviceBeginTime}}" start="{{pickerTimeStart}}" end="{{pickerTimeEnd}}" bindchange="bindTimeChange">
+            <picker mode="time" value="{{serviceBeginTime}}" start="{{formInit.pickerTimeStart}}" end="{{formInit.pickerTimeEnd}}" bindchange="bindTimeChange">
               <view class="picker">{{serviceBeginTime}}</view>
             </picker>
           </view>

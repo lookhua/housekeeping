@@ -12,7 +12,7 @@ App({
     //var logs = wx.getStorageSync('logs') || []
     //logs.unshift(Date.now())
     //wx.setStorageSync('logs', logs)
-    
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -54,11 +54,11 @@ App({
         }
         //checkmobile
         var mobile = wx.getStorageSync('userMobile')
-         if (!mobile) {
-           wx.navigateTo({
-             url: '../login/login'
-           })
-         }
+        if (!mobile) {
+          wx.navigateTo({
+            url: '../login/login'
+          })
+        }
       },
       fail: res => {
         this.newUserLogIn();
@@ -83,28 +83,34 @@ App({
           wx.setStorageSync('userId', res.data.id);
           wx.setStorageSync('userMobile', res.data.phone);
           wx.setStorageSync('userToken', res.data.token);
-        },this.dealError);
+        }, this.dealError);
       }
     })
   },
   //获取当前用户id
-  getUserId:function(){
+  getUserId: function() {
     return wx.getStorageSync('userId');
   },
   //post直接请求
-  requestUrl: function (path, data, method, callback, dealError, show = true) {
+  requestUrl: function(path, data, method, callback, dealError, show = true, form = true) {
     if (show) {
       wx.showLoading({
         title: '载入中...'
       });
     }
     var userToken = wx.getStorageSync('userToken');
-    var head = { 
-      token: userToken, 
-      'content-type': 'application/x-www-form-urlencoded' 
+    var head = {
+      token: userToken,
+      'content-type': 'application/x-www-form-urlencoded'
     };
+    if(!form){
+      head = {
+        token: userToken,
+        'content-type': 'application/json'
+      };
+    }
     wx.request({
-      url: this.config.api_url + '' + path,
+      url: this.config.api_url + '/wxapi/' + path,
       data: data,
       header: head,
       method: method,
@@ -113,11 +119,11 @@ App({
           wx.hideLoading();
         }
         //这里做判断，如果不报错就返回，如果报错，就做错误处理
-        if (res.code == 0) {
-           callback(res);
-         } else {
-           dealError(res);
-         }
+        if (res.data.code == 0 || res.data.code == 200 ) {
+          callback(res);
+        } else {
+          dealError(res);
+        }
       },
       fail: function(res) {
         if (show) {
