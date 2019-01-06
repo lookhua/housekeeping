@@ -99,7 +99,7 @@ Page({
 
   chioceServiceAddr: function() {
     wx.navigateTo({
-      url: '../member/addressList/addressList'
+      url: '../me/userAddr/addressList'
     })
   },
 

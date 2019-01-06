@@ -4,18 +4,22 @@ const app = getApp(); //获取全局app.js
 Page({
   //页面的初始数据
   data: {
-    id: 0, //ID
-    name: '', //姓名
-    mobile: '', //手机号
+    id: 0,
+    remark: '',
+    contactUser: '',
+    contactPhone: '',
     region: ['安徽省', '合肥市', '政务区'], //开户行地区
-    areaId: 410102, //开户行地区ID
-    address: '', //详细地址
-    is_def: 2
+    contactSsqx: '',
+    contactAddress: '',
+    isDefault: 0,
+    versionKey:0,
+    partionKey:'1',
+    status: 1
   },
 
 
   //生命周期函数--监听页面加载
-  onLoad: function (options) {
+  onLoad: function(options) {
     let id = options.id;
     if (id) {
       this.getAddressInfo(id);
@@ -24,63 +28,51 @@ Page({
 
 
   //获取地址详细信息
-  getAddressInfo: function (id) {
+  getAddressInfo: function(id) {
     let page = this;
     let data = {
-      'id': id
+      'addressId': id
     }
-    app.api.getshipdetail(data, function (res) {
-      if (res.status) {
-        let region = res.data.area_name.split(" ");
-        page.setData({
-          id: id,
-          name: res.data.name,
-          mobile: res.data.mobile,
-          region: region,
-          areaId: res.data.area_id,
-          address: res.data.address,
-          is_def: res.data.is_def
-        });
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: '获取收货地址信息出现问题',
-          showCancel: false
-        });
-      }
-    });
+    app.requestUrl('address/get', data, 'GET', function(res) {
+      let region = res.data.data.contactSsqx.split(",")
+      res.data.data.region = region;
+      page.setData(res.data.data);
+    }, function() {
+      app.common.errorToShow("请求失败");
+    }, true);
+
   },
 
 
   //获取姓名
-  getName: function (e) {
+  getName: function(e) {
     let name = e.detail.value;
     this.setData({
-      name: name
+      contactUser: name
     });
   },
 
 
   //获取手机号
-  getMobile: function (e) {
+  getMobile: function(e) {
     let mobile = e.detail.value;
     this.setData({
-      mobile: mobile
+      contactPhone: mobile
     });
   },
 
 
   //获取详细地址
-  getAddress: function (e) {
+  getAddress: function(e) {
     let address = e.detail.value;
     this.setData({
-      address: address
+      contactAddress: address
     });
   },
 
 
   //地区选择
-  regionChange: function (e) {
+  regionChange: function(e) {
     let province_name = e.detail.value[0];
     let city_name = e.detail.value[1];
     let county_name = e.detail.value[2];
@@ -96,55 +88,32 @@ Page({
     page.setData({
       region: regionName
     });
-    /*app.api.getAreaId(data, function (res) {
-      if (res.status) {
-        page.setData({
-          areaId: res.data
-        });
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: '地区选择出现问题，请重新选择地区',
-          showCancel: false
-        });
-      }
-    });*/
   },
 
 
   //添加地址
-  editAddress: function () {
+  editAddress: function() {
     let page = this;
-    let data = {
-      'id': page.data.id,
-      'name': page.data.name,
-      'mobile': page.data.mobile,
-      'area_id': page.data.areaId,
-      'address': page.data.address,
-      'is_def': page.data.is_def
+    if (!page.data.contactUser){
+      app.common.errorToShow("联系人不能为空");
+      return false;
     }
-
-    app.db.userToken(function (token) {
-      app.api.editship(data, function (res) {
-        if (res.status) {
-          wx.showToast({
-            title: '保存成功',
-            icon: 'success',
-            mask: true,
-            complete: function () {
-              setTimeout(function () {
-                wx.navigateBack(1);
-              }, 1500);
-            }
-          });
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: res.msg,
-            showCancel: false
-          });
-        }
-      });
-    });
+    if (!page.data.contactPhone) {
+      app.common.errorToShow("手机号码不能为空");
+      return false;
+    }
+    if (!page.data.contactAddress) {
+      app.common.errorToShow("详细地址不能为空");
+      return false;
+    }
+    let data = page.data;
+    data.contactSsqx = page.data.region.join(",")
+    app.requestUrl('address/saveOrUpdate', data, 'POST', function(res) {
+      setTimeout(function() {
+        wx.navigateBack(1);
+      }, 1500);
+    }, function() {
+      app.common.errorToShow("请求失败");
+    }, true, false);
   }
 });

@@ -42,14 +42,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    };
-    this.setData({
-      userInfo: userInfo,
-    });
 
   },
 
@@ -80,7 +72,8 @@ Page({
   //充值支付
   payForRecharge: function () {
     var page = this;
-    var userId = app.globalData.userInfo.id;
+    var userId = wx.getStorageSync('userId');
+    console.log("getorderInit userid is " + userId)
     if (!this.data.itemSelected && !this.data.inputMonney) {
       app.common.errorToShow("请输入正确的金额或者选择充值套餐");
       return false;
