@@ -26,7 +26,7 @@ Page({
   },
   pullAdvertisements: function () {
     var that = this;
-    wx.request({
+    /*wx.request({
       url: 'http://localhost:8080/advertisement',
       method: "GET",
       data:{
@@ -48,11 +48,11 @@ Page({
         // 停止下拉动作
         wx.stopPullDownRefresh();
       }
-    });
+    });*/
   },
   pullUserInfo: function () {
     var that = this;
-    wx.request({
+    /*wx.request({
       url: 'http://localhost:8080/user',
       method: "GET",
       success: function (res) {
@@ -70,7 +70,7 @@ Page({
         // 停止下拉动作
         wx.stopPullDownRefresh();
       }
-    })
+    })*/
   },
   
   // 下拉刷新
