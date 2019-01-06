@@ -9,7 +9,7 @@ Page({
     payMoney: 0,
     payMoneyTip: '不包含其他费用',
     serviceAddrId: 0,
-    serviceAddr: '安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室',
+    serviceAddr: '',
     serviceLongArray: [{
         id: 1,
         time: 3,
@@ -64,11 +64,11 @@ Page({
       });
       //设置默认地址
       console.log(" res.data.data.addressList.length is " + res.data.data.addressList.length);
-      if (res.data.data.addressList.length != 0) {
+      var userPerfectAddr = wx.getStorageSync('userPerfectAddr')
+      if (res.data.data.addressList.length != 0 && !userPerfectAddr) {
         wx.setStorageSync('userPerfectAddr', res.data.data.addressList[0]);
       }
       //初始化地址
-      var userPerfectAddr = wx.getStorageSync('userPerfectAddr')
       if (userPerfectAddr) {
         var ssq = userPerfectAddr.contactSsqx;
         ssq = ssq.replace(/,/g, "");
@@ -99,7 +99,7 @@ Page({
 
   chioceServiceAddr: function() {
     wx.navigateTo({
-      url: '../me/userAddr/addressList'
+      url: '../me/userAddr/addressList?editMod=0'
     })
   },
 

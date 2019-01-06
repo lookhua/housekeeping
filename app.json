@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/me/userAddr/addressList",
     "pages/index/index",
+    "pages/me/userAddr/addressList",
     "pages/card/recharge",
     "pages/me/index/index",                  
     "pages/order/orderList",
