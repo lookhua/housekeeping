@@ -5,7 +5,7 @@
       <text wx:if="{{item.isDefault == 0}}" class='orderadd-header-tag-green' data-id='{{item.id}}' bindtap='setDefault'>设为默认</text>
       <button class='orderadd-header-del' data-id='{{item.id}}'  data-item="{{item}}"  bindtap='delAddress'>删除</button>   
     </view>
-    <view class="orderadd-content" data-id='{{item.id}}' bindtap='editAddress'>
+    <view class="orderadd-content" data-id='{{item.id}}' data-item="{{item}}" bindtap='editAddress'>
       <view class="orderadd-top">
         <text class='orderadd-user'>联系人：{{item.contactUser}}</text>
         <!-- <text class='orderadd-num'>{{item.contactUser}}</text> -->

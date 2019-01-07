@@ -8,15 +8,15 @@
       <view class='coupons'>
         <block wx:for="{{rechargeItemList}}" wx:key="{{index}}" wx:for-index="index" wx:for-item="item">
           <view class="{{itemSelected==item.id?'coupons-item-selected':''}} coupons-item" 
-          bindtap='chioceRechargeItem' data-id="{{item.id}}" data-chong="{{item.chong}}" data-song="{{item.song}}">
+          bindtap='chioceRechargeItem' data-index="{{index}}">
             <view class='coupons-item-chong'>
               <text>冲</text>
-              <text>{{item.chong}}</text>
+              <text>{{item.rechargeMoney}}</text>
               <text>元</text>
             </view>
             <view class='coupons-item-song'>
               <text>送</text>
-              <text>{{item.song}}</text>
+              <text>{{item.presentMoney}}</text>
               <text>元</text>
             </view>
           </view>

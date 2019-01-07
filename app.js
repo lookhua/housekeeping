@@ -79,11 +79,11 @@ App({
           code: res.code,
           nickName: nickName
         };
-        this.requestUrl('user/code2session', data, 'GET', function(res) {
-          wx.setStorageSync('userId', res.data.id);
-          wx.setStorageSync('userMobile', res.data.phone);
-          wx.setStorageSync('userToken', res.data.token);
-        }, this.dealError);
+        this.requestUrl('user/code2session', data, 'POST', function(res) {
+          wx.setStorageSync('userId', res.data.data.id);
+          wx.setStorageSync('userMobile', res.data.data.phone);
+          wx.setStorageSync('userToken', res.data.data.token);
+        }, this.dealError,true,true,false);
       }
     })
   },
@@ -92,7 +92,7 @@ App({
     return wx.getStorageSync('userId');
   },
   //post直接请求
-  requestUrl: function(path, data, method, callback, dealError, show = true, form = true) {
+  requestUrl: function(path, data, method, callback, dealError, show = true, form = true,needPrefix = true) {
     if (show) {
       wx.showLoading({
         title: '载入中...'
@@ -109,8 +109,14 @@ App({
         'content-type': 'application/json'
       };
     }
+    let url = '';
+    if (needPrefix){
+      url = this.config.api_url + '/wxapi/' + path;
+    }else{
+      url = this.config.api_url + '/' + path;
+    }
     wx.request({
-      url: this.config.api_url + '/wxapi/' + path,
+      url: url,
       data: data,
       header: head,
       method: method,

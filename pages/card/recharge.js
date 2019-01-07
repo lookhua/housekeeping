@@ -7,31 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rechargeItemList: [{
-      id: 123,
-      chong: "100",
-      song: "150"
-    }, {
-      id: 124,
-      chong: "200",
-      song: "250"
-    }, {
-      id: 125,
-      chong: "300",
-      song: "350"
-    }, {
-      id: 126,
-      chong: "400",
-      song: "450"
-    }, {
-      id: 127,
-      chong: "500",
-      song: "550"
-    }, {
-      id: 128,
-      chong: "600",
-      song: "650"
-    }],
+    rechargeItemList: [
+    //   {
+    //   id: 0,
+    //   title: 0,
+    //   rechargeMoney: 0,
+    //   presentMoney: 0,
+    //   remark: 0
+    // }
+    ],
     needPay: 0,
     realRecharge: 0,
     inputMonney: null,
@@ -41,36 +25,51 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+
+  },
+  onShow: function() {
+    var page = this;
+    var userId = wx.getStorageSync('userId');
+    console.log("getorderInit userid is " + userId)
+    app.requestUrl('recharge/rechagerTypeList', {}, 'POST', function(res) {
+      page.setData({
+        rechargeItemList:res.data.data
+      });
+    }, function() {
+      app.common.errorToShow("请求失败");
+    }, true);
 
   },
 
   //选择套餐
-  chioceRechargeItem: function (e) {
+  chioceRechargeItem: function(e) {
     var page = this;
-    var itemId = e.currentTarget.dataset.id;
-    var chong = e.currentTarget.dataset.chong;
-    var song = e.currentTarget.dataset.song;
+    let index = e.currentTarget.dataset.index;
+    let id = page.data.rechargeItemList[index].id;
+    let chong = page.data.rechargeItemList[index].rechargeMoney;
+    let song = page.data.rechargeItemList[index].presentMoney + chong;
     this.setData({
       needPay: chong,
       inputMonney: null,
       realRecharge: song,
-      itemSelected: itemId
+      itemSelected: id
     });
   },
 
   //输入金额
-  realRechargeInput: function (e) {
+  realRechargeInput: function(e) {
     var money = e.detail.value;
     this.setData({
       needPay: money,
+      inputMonney: money,
       realRecharge: money,
-      itemSelected: ''
+      itemSelected: null
     });
   },
 
   //充值支付
-  payForRecharge: function () {
+  payForRecharge: function() {
     var page = this;
     var userId = wx.getStorageSync('userId');
     console.log("getorderInit userid is " + userId)
@@ -83,7 +82,7 @@ Page({
       itemSelected: this.data.itemSelected,
       inputMoney: this.data.inputMonney
     };
-    app.requestUrl('user/charge',data, function (res) {
+    app.requestUrl('recharge/saveRechager', data, 'POST', function(res) {
       if (res.status) {
         wx.requestPayment({
           'timeStamp': '' + res.data.timeStamp,
@@ -91,21 +90,23 @@ Page({
           'package': res.data.package,
           'signType': res.data.signType,
           'paySign': res.data.paySign,
-          'success': function (e) {
+          'success': function(e) {
             if (e.errMsg == "requestPayment:ok") {
               app.common.errorToBack('支付成功');
             } else if (res.errMsg == 'requestPayment:cancel') {
               app.common.errorToShow('支付已取消');
             }
           },
-          'fail': function (e) {
+          'fail': function(e) {
             app.common.errorToShow('支付失败请重新支付');
           }
         });
       } else {
         app.common.errorToShow('支付订单出现问题，请返回重新操作');
       }
-    });
+    }, function () {
+      app.common.errorToShow("请求失败");
+    }, true);
 
 
   }

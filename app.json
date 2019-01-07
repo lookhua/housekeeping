@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/me/userAddr/addressList",
+    "pages/card/card",
     "pages/card/recharge",
+    "pages/card/cardbind",
+    "pages/me/userAddr/addressList",
     "pages/me/index/index",                  
     "pages/order/orderList",
     "pages/order/orderPay",
@@ -11,8 +13,6 @@
     "pages/me/userSetting/userSetting",
     "pages/me/info/info",
     "pages/login/login",
-    "pages/card/card",
-    "pages/card/cardbind",
     "pages/msg/msg",
     "pages/logs/logs"
   ],

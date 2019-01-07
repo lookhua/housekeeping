@@ -29,13 +29,11 @@ Page({
       mobile: mobileInput,
       userId: userId
     };
-    app.requestUrl('wxapi/user/bindmobile', data, 'POST', function(res) {
-      console.log("bind use id is success "+ res.data.id);
-      console.log("bind user mobile is success " + res.data.phone);
-      wx.setStorageSync('userMobile', res.data.phone);
-      wx.navigateTo({
+    app.requestUrl('user/bindmobile', data, 'POST', function(res) {
+      wx.setStorageSync('userMobile', res.data.data.phone);
+      wx.switchTab({
         url: '../index/index'
-      })
+      });
     }, function() {
       app.common.errorToShow("请求失败");
     }, true);

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cardNumber: '阿擦边'
+    cardNo: '201946864131737101'
   },
 
   /**
@@ -18,9 +18,9 @@ Page({
   },
 
   cardNumInput:function(e){
-    var cardNumber = e.detail.value;
+    var cardNo = e.detail.value;
     this.setData({
-      cardNumber: cardNumber
+      cardNo: cardNo
     });
   },
 
@@ -31,15 +31,19 @@ Page({
       app.common.errorToShow("请输入正确的卡号");
       return false;
     }
-    console.log("current card num is " + page.data.cardNumber);
     var userId = wx.getStorageSync('userId');
-    console.log("current card num userid is " + userId);
-
     var data = {
       userId: userId,
-      userMobile: page.data.cardNumber
+      cardNo: page.data.cardNo+''
     };
-
+    app.requestUrl('card/bindcard', data, 'POST', function (res) {
+      app.common.errorToShow("绑定成功！");
+      setTimeout(function () {
+        wx.navigateBack(1);
+      }, 1500);
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
     
   }
 })

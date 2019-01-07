@@ -14,7 +14,8 @@ Page({
   },
   onLoad: function () {
     //检查用户是否登录
-    if (app.globalData.userInfo) {
+    let mobile = wx.getStorageSync('userMobile');
+    if (!mobile) {
       wx.navigateTo({
         url: '../login/login'
       })

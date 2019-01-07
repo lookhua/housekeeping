@@ -19,7 +19,7 @@
           <view class="weui-label">会员卡号</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" value='' bindinput='cardNumInput' placeholder-class='p-class' placeholder='输入待绑定卡号' />
+          <input class="weui-input" value='{{cardNo}}' bindinput='cardNumInput' placeholder-class='p-class' placeholder='输入待绑定卡号' />
         </view>
       </view>
     </view>

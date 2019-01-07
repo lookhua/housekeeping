@@ -10,7 +10,7 @@
     </view>
     <view class="card-balance">
       <text>￥</text>
-      <text>{{totalBalance}}</text>
+      <text>{{cardTotalBalance}}</text>
       <text>元</text>
     </view>
   </view>
@@ -23,7 +23,7 @@
       <text>共计会员卡</text>
     </view>
     <view class="card-top-detail-ft">
-      <text>{{cardTotalCount}}</text>
+      <text>{{cardNum}}</text>
       <text>张</text>
     </view>
     <view class='area-clean'></view>
@@ -32,30 +32,17 @@
 
 <view class='area-space'></view>
 
-<view class="card-list-items fix-with">
+<view class="card-list-items fix-with" wx:for="{{userCardList}}" wx:key="index">
   <view class="card-list-item">
     <view class="card-list-item-text">
       <view class="card-list-item-type">会员卡</view>
       <view class="card-list-item-yuer">
         <text>￥</text>
-        <text>{{totalBalance}}</text>
+        <text>{{item.cardBalance}}</text>
         <text>元</text>
       </view>
-      <view class="card-list-item-kahao">卡号:NEFEFHHDF</view>
-      <view class="card-list-item-jihuo">激活日志:2018-09-30 有效期至:2018-80-2343</view>
-    </view>
-    <image src="../../static/card/cardbg.png" />
-  </view>
-  <view class="card-list-item">
-    <view class="card-list-item-text">
-      <view class="card-list-item-type">现金卡</view>
-      <view class="card-list-item-yuer">
-        <text>￥</text>
-        <text>{{totalBalance}}</text>
-        <text>元</text>
-      </view>
-      <view class="card-list-item-kahao">卡号:NEFEFHHDF</view>
-      <view class="card-list-item-jihuo">激活日志:2018-09-30 有效期至:2018-80-2343</view>
+      <view class="card-list-item-kahao">卡号:{{item.cardNo}}</view>
+      <view class="card-list-item-jihuo">激活日期:{{item.activeDate}}</view>
     </view>
     <image src="../../static/card/cardbg.png" />
   </view>
