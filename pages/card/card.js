@@ -47,13 +47,13 @@ Page({
 
   //事件处理函数
   scanCardNumber: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: 'cardbind',
     })
   },
 
   moneyReCharge:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: 'recharge',
     })
   }

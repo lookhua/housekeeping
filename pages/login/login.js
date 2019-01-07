@@ -31,9 +31,7 @@ Page({
     };
     app.requestUrl('user/bindmobile', data, 'POST', function(res) {
       wx.setStorageSync('userMobile', res.data.data.phone);
-      wx.switchTab({
-        url: '../index/index'
-      });
+      wx.navigateBack(1);
     }, function() {
       app.common.errorToShow("请求失败");
     }, true);

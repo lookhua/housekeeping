@@ -1,7 +1,5 @@
 //app.js
 App({
-  api: require('utils/api.js'), //接口文档
-  db: require('utils/db.js'), //本地存储
   config: require('utils/config.js'), //本地存储
   common: require('utils/common.js'),
   globalData: {

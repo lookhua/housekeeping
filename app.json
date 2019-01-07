@@ -13,8 +13,7 @@
     "pages/me/userSetting/userSetting",
     "pages/me/info/info",
     "pages/login/login",
-    "pages/msg/msg",
-    "pages/logs/logs"
+    "pages/msg/msg"
   ],
   "window": {
     "backgroundTextStyle": "light",
