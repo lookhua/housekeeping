@@ -13,13 +13,6 @@ Page({
     users: []
   },
   onLoad: function () {
-    //检查用户是否登录
-    let mobile = wx.getStorageSync('userMobile');
-    if (!mobile) {
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    }
     //获取广告列表
     this.pullAdvertisements();
     //获取列表

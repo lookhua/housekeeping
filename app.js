@@ -50,13 +50,6 @@ App({
         if (!userId || !userToken) {
           this.newUserLogIn();
         }
-        //checkmobile
-        var mobile = wx.getStorageSync('userMobile')
-        if (!mobile) {
-          wx.navigateTo({
-            url: '../login/login'
-          })
-        }
       },
       fail: res => {
         this.newUserLogIn();
@@ -81,6 +74,13 @@ App({
           wx.setStorageSync('userId', res.data.data.id);
           wx.setStorageSync('userMobile', res.data.data.phone);
           wx.setStorageSync('userToken', res.data.data.token);
+          //checkmobile
+          var mobile = wx.getStorageSync('userMobile')
+          if (!mobile) {
+            wx.navigateTo({
+              url: '../login/login'
+            })
+          }
         }, this.dealError,true,true,false);
       }
     })
