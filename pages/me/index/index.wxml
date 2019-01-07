@@ -5,29 +5,23 @@
       <view class='top-left'>
         <text class='remaining-sum'>余额</text>
         <text class='remainingsum-num'>{{balance}}</text>
-        <!-- <navigator class='recharge'>充值</navigator> -->
       </view>
       <!-- 头像昵称 -->
       <view class='top-mid'>
         <open-data class='head-sculpture' type="userAvatarUrl"></open-data>
         <open-data class='username' type="userNickName"></open-data>
-        <!-- <image mode='aspectFill' class='head-sculpture' bindtap='chooseAvatar' src='{{avatar}}'></image> -->
-        <!-- <text class='username'>{{nickname}} </text> -->
+
       </view>
        <view class='top-right'>
         <text class='accumulate-points' wx:if="{{isPoint}}">积分</text>
         <text class='accumulatepoints-num' wx:if="{{isPoint}}">{{point}}</text>
        </view>
-      <!-- <image bindtap='setting' class='user-setting' src='/static/image/chilun.png'></image> -->
+  
     </view>
     <image class='bg' src='/static/image/bg.png'></image>
     <!-- 手机号绑定 -->
     <view class='header-bottom' bindtap='bindMobile'>
-      <view wx:if="{{bindMobile}}" class='header-bottom-left'>
-        <image src='/static/image/phone.png'></image>
-        <text>绑定手机号</text>
-      </view>
-      <image wx:if="{{bindMobile}}" class='header-bottom-right right-arrow' src='/static/image/right.png'></image>
+      
     </view>
   </view>
 </view>
@@ -78,7 +72,7 @@
 
   <!-- 余额提现 -->
    <view class='content-view' bindtap='gotoCardPage'>
-    <image class='member-icon' src='/static/image/remainingsum.png'></image>
+    <image class='member-icon' src='/static/image/ic-money.png'></image>
     <text class='member-text'>我的会员卡</text>
   </view>
 
