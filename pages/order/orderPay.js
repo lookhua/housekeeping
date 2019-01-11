@@ -34,7 +34,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var page = this;
+    var userId = wx.getStorageSync('userId');
+    //订单信息
+    app.requestUrl('order/userCardSurvey', {
+      orderId: orderId
+    }, 'POST', function (res) {
+      page.setData({
+        wallet: {
+          cardCount: res.data.cardNum,
+          balance: res.data.cardTotalBalance
+        }
+      });
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.msg);
+    }, true);
 
+    //设置卡信息
+    app.requestUrl('card/userCardSurvey', {
+      userId: userId
+    }, 'POST', function (res) {
+      page.setData({
+        wallet: {
+          cardCount: res.data.cardNum,
+          balance: res.data.cardTotalBalance
+        }
+      });
+    }, function (res) {
+      app.common.errorToShow("请求失败:"+res.msg);
+    }, true);
   },
 
   /**
@@ -72,7 +100,7 @@ Page({
 
   },
 
-  payOrder:function(){
+  payOrder: function () {
     wx.navigateTo({
       url: '../member/order/orderList/orderList'
     })

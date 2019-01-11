@@ -74,6 +74,7 @@ App({
           wx.setStorageSync('userId', res.data.data.id);
           wx.setStorageSync('userMobile', res.data.data.phone);
           wx.setStorageSync('userToken', res.data.data.token);
+          wx.setStorageSync('userType', res.data.data.type);
           //checkmobile
           var mobile = wx.getStorageSync('userMobile')
           if (!mobile) {

@@ -4,77 +4,89 @@ var app = getApp(); //全局APP
 Page({
   //页面初始数据
   data: {
+    userType: 2,
     nickname: '',
     point: 0, //用户积分
     balance: '0.00', //用户余额
     isPoint: true, //开启积分
     avatar: '/static/image/default_avatar.png',
     bindMobile: false,
-    statusData: [], //状态数据
+    statusData: [0, 1, 2, 3, 4], //状态数据
     isClerk: false, //是不是店员
+  },
+
+  onLoad: function(e) {
+    let type = wx.getStorageSync("userType") || 2; //2-用户，3-保洁人员
+    this.setData({
+      userType: type
+    });
   },
 
   //加载执行
   onShow: function(options) {
     var page = this;
-    app.db.userToken(function(token) {
-      app.api.userInfo(function(res) {
-        if (res.status) {
-          //如果没有头像，设置本地默认头像
-          var avatar = '/static/image/default_avatar.png';
-          if (res.data.avatar) {
-            avatar = res.data.avatar;
-          }
-          page.setData({
-            nickname: res.data.nickname,
-            avatar: avatar,
-            point: res.data.point,
-            balance: res.data.balance
-          });
-        }
+    var userId = wx.getStorageSync('userId');
+    //加载订单数量
+    app.requestUrl('order/getOrdersAmount', {
+      userId: userId
+    }, 'POST', function (res) {
+      var array = [0];
+      var preOrder = res.data.data.confirmamount || 1;
+      array.push(preOrder);
+      var preService = res.data.data.serviceamount || 0;
+      array.push(preService);
+      var prePay = res.data.data.payamount || 0;
+      array.push(prePay);
+      var preEval = res.data.data.evaluateamount || 0;
+      array.push(preEval);
+      page.setData({
+        statusData: array
       });
-      //加载订单数量
-      app.api.getOrderStatusNum('1,2,3,4', function(res) {
-        page.setData({
-          statusData: res.data
-        });
-      });
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.msg);
+    }, true);
 
-    });
   },
 
   //查看全部订单
   orderAll: function() {
     wx.navigateTo({
-      url: '/pages/order/orderList?type=all',
+      url: '/pages/order/orderList?tabselected=0',
     });
   },
 
-  //待支付订单
+  //预约中
   orderNoPay: function() {
     wx.navigateTo({
-      url: '/pages/order/orderList?type=pendingpayment',
+      url: '/pages/order/orderList?tabselected=1&userType=2',
     });
   },
 
-  //待发货订单
+  //待服务
   orderNoShip: function() {
     wx.navigateTo({
-      url: '/pages/order/orderList?type=pendingdelivery',
+      url: '/pages/order/orderList?tabselected=2&userType=2',
     });
   },
 
-  //待收货订单
+  //待付款
   orderNoReceiving: function() {
     wx.navigateTo({
-      url: '/pages/order/orderList?type=goodstobereceived',
+      url: '/pages/order/orderList?tabselected=3&userType=2',
     });
   },
 
-  //全部
+  //待评价
   orderAftermarket: function() {
     wx.navigateTo({
-      url: '/pages/order/orderList?type=all',
+      url: '/pages/order/orderList?tabselected=4&userType=2',
+    });
+  },
+
+  //分配给我的订单
+  orderTome: function() {
+    wx.navigateTo({
+      url: '/pages/order/orderList?tabselected=2&userType=3',
     });
   },
 

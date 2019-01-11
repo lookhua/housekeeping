@@ -14,13 +14,13 @@ Page({
   },
   onLoad: function () {
     //获取广告列表
-    this.pullAdvertisements();
+    // this.pullAdvertisements();
     //获取列表
-    this.pullUserInfo();
+    // this.pullUserInfo();
   },
   pullAdvertisements: function () {
-    var that = this;
-    /*wx.request({
+   /* var that = this;
+    wx.request({
       url: 'http://localhost:8080/advertisement',
       method: "GET",
       data:{
@@ -45,8 +45,8 @@ Page({
     });*/
   },
   pullUserInfo: function () {
-    var that = this;
-    /*wx.request({
+   /* var that = this;
+    wx.request({
       url: 'http://localhost:8080/user',
       method: "GET",
       success: function (res) {

@@ -24,6 +24,7 @@ Page({
           wx.removeStorageSync('userId');
           wx.removeStorageSync('userToken');
           wx.removeStorageSync('userMobile');
+          wx.removeStorageSync('userType');
           wx.removeStorageSync('userPerfectAddr');
           wx.switchTab({
             url: '/pages/index/index'
