@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/order/comment",
     "pages/order/orderConfirm",
     "pages/card/recharge",
     "pages/card/inoutlist",

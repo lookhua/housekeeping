@@ -1,37 +1,23 @@
 <!--index.wxml-->
 <view class="fix-with">
-  <view class="userinfo">
+  <!-- <view class="userinfo">
     <open-data class='head-sculpture' type="userAvatarUrl"></open-data>
     <open-data class='username' type="userNickName"></open-data>
-  </view>
-  <view class="userMobileInnfo">
-
-    <view class="userMobileInnfo-title">请绑定手机号，以便我们更好的为您服务</view>
-
-    <view class="userMobileInnfo-yzm">
-      <view class="userMobileInnfo-yzm-lable">
-        <label class="weui-label">手机号</label>
+  </view> -->
+  <view class="orderComment">
+    <view class="orderComment-title">请评价本次服务，以便我们更好的为您服务</view>
+    <view class="orderComment-yzm">
+      <view class="">
+        <label class="weui-label">评价内容：</label>
       </view>
-      <view class="userMobileInnfo-yzm-mobile">
-        <input class="weui-input" type="number" value='{{bindMobile}}' bindinput='mobileInputFun' placeholder="请输入手机号" />
+      <view class="orderComment-textarea-border">
+        <textarea class="orderComment-yzm-textarea" bindblur="bindTextAreaBlur" maxlength="1000" auto-height auto-focus='true' placeholder="" value='{{comment}}' />
       </view>
-      <!-- <view class="userMobileInnfo-yzm-bt">
-        <button class="weui-vcode-btn">获取验证码</button>
-      </view> -->
     </view>
-    <view class="userMobileInnfo-yzm">
-      <!-- <view class="userMobileInnfo-yzm-lable">
-        <label class="weui-label">验证码</label>
-      </view>
-      <view class="userMobileInnfo-yzm-mobile">
-        <input class="weui-input" type="tel" placeholder="请输入验证码" />
-      </view>-->
-    </view>
-
     <view class='area-space'></view>
 
     <view class="">
-      <button class="weui-btn weui-btn_warn" type='warn' bindtap="bindMobileToUser">绑定手机</button>
+      <button class="weui-btn weui-btn_warn" type='warn' bindtap="orderComment">提交评价</button>
     </view>
 
   </view>

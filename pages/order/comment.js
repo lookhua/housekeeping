@@ -4,37 +4,48 @@ const app = getApp()
 
 Page({
   data: {
-    bindMobile: '15255108906'
+    orderId:'',
+    comment: ''
   },
-  //输入金额
-  mobileInputFun: function(e) {
-    var bindMobile = e.detail.value;
+
+  //输入评价
+  bindTextAreaBlur: function(e) {
+    var comment = e.detail.value;
     this.setData({
-      bindMobile: bindMobile
+      comment: comment
     });
   },
-  bindMobileToUser: function(e) {
-    var mobileInput = this.data.bindMobile;
-    if (!mobileInput) {
-      app.common.errorToShow("请输入正确的手机号");
+
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onLoad: function (options) {
+    var orderId = options.orderId || 0;
+    this.setData({
+      orderId: orderId
+    })
+  },
+
+  orderComment: function(e) {
+    var comment = this.data.comment;
+    var orderId = this.data.orderId;
+    if (!comment) {
+      app.common.errorToShow("请输入评价内容");
       return false;
     }
     var userId = wx.getStorageSync("userId")
     console.log("userId get in login page is "+userId)
-    if (!userId) {
-      app.userWxSessionCheck();
-      return false;
-    }
     var data = {
-      mobile: mobileInput,
-      userId: userId
+      id:0,
+      order:{id:orderId},
+      evaluateContent: comment,
+      orderId: userId
     };
-    app.requestUrl('user/bindmobile', data, 'POST', function(res) {
-      wx.setStorageSync('userMobile', res.data.data.phone);
+    app.requestUrl('order/evaluate', data, 'POST', function(res) {
       wx.navigateBack(1);
     }, function() {
-      app.common.errorToShow("请求失败");
-    }, true);
+      app.common.errorToShow("评价失败");
+    }, true,false);
     
   }
 

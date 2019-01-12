@@ -1,51 +1,45 @@
 /**index.wxss**/
-page{
+
+page {
   padding-left: 30rpx;
   padding-right: 30rpx;
+  background: #f4f3f3;
 }
 
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.userMobileInnfo {
+.orderComment {
   display: flex;
   flex-direction: column;
   align-items: stretch；;
 }
 
-.userMobileInnfo-title {
+.orderComment-title {
   font-size: 32rpx;
   padding: 24rpx;
   text-align: center;
 }
 
-.userMobileInnfo-yzm {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.orderComment-yzm {
   border-top: 1px solid lightgray;
-  padding: 16rpx 0rpx; 
+  padding: 16rpx 0rpx;
   font-size: 32rpx;
 }
-.userMobileInnfo-yzm-lable{
+.orderComment-textarea-border{
+  margin-top: 18rpx;
+  height: 200rpx;
+  background: white;
+}
+.orderComment-yzm-textarea {
+  width: 100%;
+  height: 100%;
+}
+
+.orderComment-yzm-lable {
   flex-basis: 120rpx;
 }
-.userMobileInnfo-yzm-mobile{
+
+.orderComment-yzm-mobile {
 }
-.userMobileInnfo-yzm-bt{
+
+.orderComment-yzm-bt {
   flex-basis: 120rpx;
 }
