@@ -7,7 +7,7 @@ Page({
    */
   data: {
     payMoney: 0,
-    payMoneyTip: '实际费用以实际耗时为准',
+    payMoneyTip: '实际费用以实际工时为准',
     serviceAddrId: 0,
     serviceAddr: '',
     priceIndex: 0,
