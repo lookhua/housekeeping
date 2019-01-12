@@ -17,11 +17,25 @@
       <view class="cell-list-item">
         <image class="cell-list-item-lfimg" src="/static/order/tessss.png" />
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">选择服务时长</view>
+          <view class="cell-list-item-text-tile">选择服类型</view>
           <view class="cell-list-item-text-remark">
-            <picker bindchange="bindPickerChange" value="{{serviceArrayIndex}}" range-key="time" range="{{serviceLongArray}}">
-              <view class="picker">{{serviceLongArray[serviceArrayIndex].time}}小时</view>
+            <!-- <picker bindchange="bindPickerChange" value="{{serviceArrayIndex}}" range-key="time" range="{{formInit.services}}">
+              <view class="picker">{{serviceLongArray[serviceArrayIndex].price}}小时</view>
+            </picker> -->
+            <picker bindchange="bindPickerChange" value="{{priceIndex}}" range-key="remark" range="{{formInit.services}}">
+              <view class="picker">{{formInit.services[priceIndex].fkServiceId.serviceName}}</view>
             </picker>
+          </view>
+        </view>
+        <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+      </view>
+
+      <view class="cell-list-item">
+        <image class="cell-list-item-lfimg" src="/static/order/tessss.png" />
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">输入服务时长</view>
+          <view class="cell-list-item-text-remark">
+            <input bindinput="orderServiceHoursInput" value="{{serviceHours}}"></input>
           </view>
         </view>
         <image class="cell-list-item-rtimg" src="/static/image/select.png" />
@@ -61,7 +75,7 @@
             <input bindinput="orderRmarkInput" placeholder='特殊要求'>{{orderRmark}}</input>
           </view>
         </view>
-         <image class="cell-list-item-rtimg" src="" />
+        <image class="cell-list-item-rtimg" src="" />
       </view>
 
     </view>

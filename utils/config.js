@@ -1,7 +1,7 @@
 module.exports = {
   app_id: '',
   session_key: '',
-  api_url: 'https://www.lhjj66.com',
+  api_url: 'http://localhost:8080',
   cdn_url: 'https://www.lhjj66.com',
   default_image: '',
   app_title: '领航家政',

@@ -7,33 +7,16 @@ Page({
    */
   data: {
     payMoney: 0,
-    payMoneyTip: '不包含其他费用',
+    payMoneyTip: '实际费用以实际耗时为准',
     serviceAddrId: 0,
     serviceAddr: '',
-    serviceLongArray: [{
-        id: 1,
-        time: 3,
-        price: 120
-      },
-      {
-        id: 2,
-        time: 4,
-        price: 160
-      },
-      {
-        id: 3,
-        time: 5,
-        price: 500
-      },
-      {
-        id: 4,
-        time: 6,
-        price: 400
-      }
-    ],
-    serviceArrayIndex: 0,
+    priceIndex: 0,
+    perPrice: 0,
+    serviceHours: 3,
     formInit: {
       addressList: [],
+      services: [],
+      serviceHoursStart: 3,
       pickerDateStart: '2019-01-01',
       pickerDateEnd: '2019-02-01',
       pickerTimeStart: '09:01',
@@ -68,7 +51,6 @@ Page({
       if (res.data.data.addressList.length != 0 && !userPerfectAddr) {
         wx.setStorageSync('userPerfectAddr', res.data.data.addressList[0]);
       }
-      //初始化地址
       if (userPerfectAddr) {
         var ssq = userPerfectAddr.contactSsqx;
         ssq = ssq.replace(/,/g, "");
@@ -84,13 +66,23 @@ Page({
           serviceAddr: '请输入服务地址'
         })
       }
-      //初始金额
-      var payMoney = page.data.serviceLongArray[0].price || 0;
+      //初始服务单价
+      var priceIndex = page.data.priceIndex;
+      var perPrice = page.data.formInit.services[priceIndex].price || 0;
+
+      //初始支付金额
+      var payMoney = page.data.formInit.serviceHoursStart * perPrice;
+
+      //初始化
       page.setData({
+        priceIndex: 0,
+        perPrice: perPrice,
+        serviceHours: page.data.formInit.serviceHoursStart,
         serviceBeginDate: page.data.formInit.pickerDateStart,
         serviceBeginTime: page.data.formInit.pickerTimeStart,
         payMoney: payMoney
       })
+
     }, function() {
       app.common.errorToShow("请求失败");
     }, true);
@@ -105,10 +97,11 @@ Page({
 
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    var payMoney = this.data.serviceLongArray[e.detail.value].price;
+    var index = e.detail.value;
+    var perPrice = this.data.formInit.services[index].price
     this.setData({
-      serviceArrayIndex: e.detail.value,
-      payMoney: payMoney
+      priceIndex: e.detail.value,
+      perPrice: perPrice
     })
   },
 
@@ -133,6 +126,15 @@ Page({
     })
   },
 
+  orderServiceHoursInput: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var hours = e.detail.value || 0;
+    var money = this.data.perPrice * hours;
+    this.setData({
+      money: money
+    })
+  },
+
   //预约服务
   payFororderConfirm: function() {
 
@@ -143,21 +145,25 @@ Page({
     console.log("payFororderConfirm userMobile is " + userMobile)
 
     let index = this.data.serviceArrayIndex;
-
     var serviceHours = this.data.serviceLongArray[index].time;
 
     var serviceTime = this.data.serviceBeginDate + " " + this.data.serviceBeginTime;
+
+    //let sindex = this.data.serviceTypeIndex;
+    var serviceTypeId = this.data.serviceLongArray[sindex].time;
 
     var data = {
       id: 0,
       name: "家政服务",
       telphone: userMobile,
-      fkServiceId: {id:1},
-      fkPriceId: 1,
+      fkServiceId: serviceTypeId,
+      fkPriceId: null,
       serviceHours: serviceHours,
       serviceTime: serviceTime,
       deviceFlag: 0,
-      user: { id: userId},
+      user: {
+        id: userId
+      },
       addressId: this.data.serviceAddrId,
       address: this.data.serviceAddr,
       pay: this.data.payMoney,
@@ -174,7 +180,7 @@ Page({
       })
     }, function() {
       app.common.errorToShow("请求失败");
-    }, true,false);
+    }, true, false);
 
 
   }

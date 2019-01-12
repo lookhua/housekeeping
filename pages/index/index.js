@@ -19,13 +19,7 @@ Page({
     // this.pullUserInfo();
   },
   onShow:function(){
-    //订单列表
-    app.requestUrl('service/getAllServices', {}, 'GET', function (res) {
-      console.log("getAllServices list success!");
-      page.setData(res.data.data);
-    }, function (res) {
-      app.common.errorToShow("请求失败:" + res.data.msg);
-    }, true);
+
   },
 
   pullAdvertisements: function () {
