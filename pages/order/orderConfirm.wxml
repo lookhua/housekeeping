@@ -15,7 +15,7 @@
     <view class="cell-list-items">
 
       <view class="cell-list-item">
-        <image class="cell-list-item-lfimg" src="/static/order/tessss.png" />
+        <image class="cell-list-item-lfimg" src="/static/image/jilu.png" />
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile">选择服类型</view>
           <view class="cell-list-item-text-remark">
@@ -38,7 +38,7 @@
             <input bindinput="orderServiceHoursInput" value="{{serviceHours}}"></input>
           </view>
         </view>
-        <image class="cell-list-item-rtimg" src="/static/image/select.png" />
+        <image class="cell-list-item-rtimg" src="" />
       </view>
 
       <view class="cell-list-item">

@@ -98,10 +98,12 @@ Page({
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     var index = e.detail.value;
-    var perPrice = this.data.formInit.services[index].price
+    var perPrice = this.data.formInit.services[index].price;
+    var money = perPrice * this.data.serviceHours;
     this.setData({
       priceIndex: e.detail.value,
-      perPrice: perPrice
+      perPrice: perPrice,
+      payMoney: money
     })
   },
 
@@ -131,7 +133,7 @@ Page({
     var hours = e.detail.value || 0;
     var money = this.data.perPrice * hours;
     this.setData({
-      money: money
+      payMoney: money
     })
   },
 
@@ -141,29 +143,32 @@ Page({
     var userId = wx.getStorageSync('userId');
     console.log("payFororderConfirm userid is " + userId)
 
-    var userMobile = wx.getStorageSync('userMobile');
+    let userMobile = wx.getStorageSync('userMobile');
     console.log("payFororderConfirm userMobile is " + userMobile)
 
-    let index = this.data.serviceArrayIndex;
-    var serviceHours = this.data.serviceLongArray[index].time;
+    let serviceHours = this.data.serviceHours;
 
-    var serviceTime = this.data.serviceBeginDate + " " + this.data.serviceBeginTime;
+    if (this.data.formInit.serviceHoursStart > serviceHours ){
+      app.common.errorToShow("小时数不小于" + this.data.formInit.serviceHoursStart);
+      return ;
+    }
 
-    //let sindex = this.data.serviceTypeIndex;
-    var serviceTypeId = this.data.serviceLongArray[sindex].time;
+    let serviceTime = this.data.serviceBeginDate + " " + this.data.serviceBeginTime;
+
+    let sindex = this.data.priceIndex;
+
+    let serviceTypeId = this.data.formInit.services[sindex].id;
 
     var data = {
       id: 0,
       name: "家政服务",
       telphone: userMobile,
-      fkServiceId: serviceTypeId,
-      fkPriceId: null,
+      fkServiceId: { id: serviceTypeId},
+      fkPriceId: 0,
       serviceHours: serviceHours,
       serviceTime: serviceTime,
       deviceFlag: 0,
-      user: {
-        id: userId
-      },
+      user: {id: userId},
       addressId: this.data.serviceAddrId,
       address: this.data.serviceAddr,
       pay: this.data.payMoney,
