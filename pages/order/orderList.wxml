@@ -13,7 +13,7 @@
   </view>
 
   <view class="order-list-items">
-    <block wx:for="{{content}}" wx:key="{{index}}">
+    <block wx:for="{{content}}" wx:for-index="index">
       <view class="order-list-item">
         <view class="order-list-item-head ">
           <image class='order-list-item-head-lfimg' src="/static/order/ordertip.png"></image>
@@ -67,7 +67,7 @@
             <text class='order-list-item-foot-left-imp'>¥{{item.payMoney}}</text>
           </view>
           <view wx:if="{{tabselected==2}}">
-            <button data-tagId='2' data-opt='5' data-index='{{index}}' bindtap='optOder'>服务完成</button>
+            <button data-tagId='2' data-opt='5' data-index='{{index}}' bindtap='endService'>服务完成</button>
           </view>
           <view wx:elif="{{tabselected==0}}">
             <button data-tagId='0' data-opt='0' data-index='{{index}}' bindtap='optOder'>订单详情</button>

@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     cardTotalBalance:0,
+    cardTotalHour:0,
     cardNum:0,
     userCardList:[
       // {
@@ -14,6 +15,7 @@ Page({
       //   cardType: 0,
       //   cardFaceValue: 0,
       //   cardBalance: 0,
+      //   cardOverHour:0,
       //   cardEnableFlag: 0,
       //   status: 0,
       //   versionKey: 0,

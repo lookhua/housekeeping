@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var orderId = options.orderId || '';
+    var orderId = options.orderId || 0;
     this.setData({
       orderId: orderId
     })
@@ -41,17 +41,13 @@ Page({
   onShow: function() {
     var page = this;
     var userId = wx.getStorageSync('userId');
+    var orderId = page.data.orderId;
     //订单信息
-    app.requestUrl('order/userCardSurvey', {
+    app.requestUrl('order/getOrderById', {
       userId: userId,
-      orderId: page.orderId
-    }, 'POST', function(res) {
-      page.setData({
-        wallet: {
-          cardCount: res.data.cardNum,
-          balance: res.data.cardTotalBalance
-        }
-      });
+      orderId: orderId
+    }, 'GET', function(res) {
+      page.setData(res.data.data);
     }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);

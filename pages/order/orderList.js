@@ -120,7 +120,7 @@ Page({
   getOrderList: function(userId, orderStatus, up = false) {
     var page = this;
     var url = '';
-    if (page.data.type == 3) { //3-保洁人员
+    if (page.data.userType == 3) { //3-保洁人员
       url = 'order/getOrdersByServicer';
     } else {
       url = 'order/getOrdersByConsumer';
@@ -212,6 +212,20 @@ Page({
     app.requestUrl('order/cancelOrder', {
       orderId: orderId
     }, 'POST', function (res) {
+      console.log("cancelOrder success!");
+      page.onPullDownRefresh();
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
+  },
+
+  endService: function (e) {
+    let page = this;
+    let orderIndex = e.target.dataset.index;
+    let orderId = page.data.content[orderIndex].id;
+    app.requestUrl('order/endService', {
+      orderId: orderId
+    }, 'GET', function (res) {
       console.log("cancelOrder success!");
       page.onPullDownRefresh();
     }, function (res) {

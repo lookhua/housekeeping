@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/msg/msg",
-    "pages/index/index",
-    "pages/card/inoutlist",
     "pages/card/card",
-    "pages/me/index/index",
-    "pages/order/orderList",
+    "pages/index/index",
     "pages/order/orderPay",
+    "pages/order/orderList",
+    "pages/msg/msg",
+    "pages/card/inoutlist",
+    "pages/me/index/index",
     "pages/me/info/info",
     "pages/card/recharge",
     "pages/card/cardbind",
