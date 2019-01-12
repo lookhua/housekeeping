@@ -1,19 +1,22 @@
 <view class="inout-center">
-  <view class="inout-center-items" wx:for="{{inoutList}}" wx:for-index="idx" wx:for-item="inout">
-    <view class="inout-center-item">
+  <view class="inout-center-items">
+    <view wx:for="{{content}}" wx:key="id" wx:for-index="idx" wx:for-item="inout" class="inout-center-item">
       <view class='inout-center-item-head-title'>
-
-        <view class='inout-center-item-head-title-lf'>
-          {{inout.title}}
+        <view class='inout-center-item-head-title-lf'>{{inout.payType}}</view>
+        <view wx:if="{{inout.payType==1}}" class="inout-center-item-head-title-lf red">
+          <text wx:if="{{inout.payPrice > 0}}">-{{inout.payPrice}}元</text>
+          <text wx:if="{{inout.payPrice > 0 && inout.payHour > 0}}">，</text>
+          <text wx:if="{{inout.payHour > 0}}">-{{inout.payHour}}小时</text>
         </view>
-        <view class="inout-center-item-head-title-lf green {{inout.money<0? 'red':''}}">
-        {{inout.money<0? '':'+'}}{{inout.money}}
+        <view wx:if="{{inout.payType==2}}" class="inout-center-item-head-title-lf green">
+          +{{inout.payPrice}}元
         </view>
-
       </view>
-      <view class='inout-center-item-head-content'>{{inout.content}}</view>
+      <view class='inout-center-item-head-content'>
+        卡号:{{inout.cardNo}}
+      </view>
       <view class="inout-center-item-foot">
-        <text>{{inout.creatTime}}</text>
+        <text>{{inout.payTime}}</text>
       </view>
     </view>
   </view>

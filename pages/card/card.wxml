@@ -6,7 +6,7 @@
 
   <view class="card-top-total">
     <view>
-      <text>我的余额</text>
+      <text>我的账户</text>
     </view>
     <view class="card-balance">
       <text>￥</text>
