@@ -7,13 +7,14 @@
       <view class="scell-list-item">
         <image class="scell-list-item-lfimg" src="/static/order/baojiedz.png" />
         <view class="scell-list-item-text">
-          <view class="scell-list-item-text-tile">{{order.serviceAddr}}</view>
+          <view class="scell-list-item-text-tile">{{order.consumerAddr}}</view>
+          <view class="scell-list-item-text-tile">电话:{{order.subscribe.telphone}}</view>
         </view>
       </view>
       <view class="scell-list-item">
         <image class="scell-list-item-lfimg" src="/static/order/baojietime.png" />
         <view class="scell-list-item-text">
-          <view class="scell-list-item-text-tile">服务时间：{{order.serverTime}}</view>
+          <view class="scell-list-item-text-tile">服务时间：{{order.subscribe.serverTime}} 时长:{{order.subscribe.serviceHours}}小时</view>
         </view>
       </view>
       <view class="scell-list-item">

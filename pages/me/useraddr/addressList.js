@@ -114,7 +114,7 @@ Page({
         selectAddress: true,
       });
       wx.navigateBack(1);
-      // let data = {
+      // let data = 
       //   'id': id
       // }
       // app.api.getshipdetail(data, function(res) {

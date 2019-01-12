@@ -1,9 +1,11 @@
+const app = getApp(); //获取全局app.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    orderId: '',
     payMoney: 120,
     order: {
       remark: '速度点,多带点洗碟精',
@@ -19,88 +21,92 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    var orderId = options.orderId || '';
+    this.setData({
+      orderId: orderId
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var page = this;
     var userId = wx.getStorageSync('userId');
     //订单信息
     app.requestUrl('order/userCardSurvey', {
-      orderId: orderId
-    }, 'POST', function (res) {
+      userId: userId,
+      orderId: page.orderId
+    }, 'POST', function(res) {
       page.setData({
         wallet: {
           cardCount: res.data.cardNum,
           balance: res.data.cardTotalBalance
         }
       });
-    }, function (res) {
-      app.common.errorToShow("请求失败:" + res.msg);
+    }, function(res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
 
-    //设置卡信息
+    //获取卡信息
     app.requestUrl('card/userCardSurvey', {
       userId: userId
-    }, 'POST', function (res) {
+    }, 'POST', function(res) {
       page.setData({
         wallet: {
           cardCount: res.data.cardNum,
           balance: res.data.cardTotalBalance
         }
       });
-    }, function (res) {
-      app.common.errorToShow("请求失败:"+res.msg);
+    }, function(res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  payOrder: function () {
+  payOrder: function() {
     wx.navigateTo({
       url: '../member/order/orderList/orderList'
     })

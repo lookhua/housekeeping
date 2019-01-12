@@ -22,33 +22,33 @@
             <view class='order-list-item-head-text-remark'>已取消</view>
           </view>
         </view>
-        <view class="order-list-item-body">
+        <view class="order-list-item-body" bindtap='orderDetail' data-index='{{index}}'>
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didian1.png"></image>
             <text class='order-list-item-body-line-title'>服务时间：</text>
-            <text class='order-list-item-body-line-content'>{{item.serviceBeginTime}}</text>
+            <text class='order-list-item-body-line-content'>{{item.subscribe.serviceTime}}</text>
           </view>
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didain.png"></image>
             <text class='order-list-item-body-line-title'>服务地址：</text>
-            <text class='order-list-item-body-line-content'>{{item.serverAddr}}</text>
+            <text class='order-list-item-body-line-content'>{{item.consumerAddr}}</text>
           </view>
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/bz1.png"></image>
             <text class='order-list-item-body-line-title'>预约备注：</text>
-            <text class='order-list-item-body-line-content'>{{item.remark}}</text>
+            <text class='order-list-item-body-line-content'>{{item.remark==null?"无":item.remark}}</text>
           </view>
         </view>
         <view class="order-list-item-foot" wx:if="{{userType==2}}">
           <view class="order-list-item-foot-left">
             <text class='order-list-item-foot-left-tip'>小计金额：</text>
-            <text class='order-list-item-foot-left-imp'>¥{{item.payMoney}}</text>
+            <text class='order-list-item-foot-left-imp'>¥{{item.subscribe.pay}}</text>
           </view>
           <view wx:if="{{tabselected==1}}">
-            <button data-tagId='1' data-opt='1' data-index='{{index}}' bindtap='optOder'>取消订单</button>
+            <button data-tagId='1' data-opt='1' data-index='{{index}}' bindtap='cancelOrder'>取消订单</button>
           </view>
           <view wx:elif="{{tabselected==2}}">
-            <button data-tagId='2' data-opt='2' data-index='{{index}}' bindtap='optOder'>订单详情</button>
+            <button data-tagId='2' data-opt='2' data-index='{{index}}' bindtap='orderDetail'>订单详情</button>
           </view>
           <view wx:elif="{{tabselected==3}}">
             <button type='warn' data-tagId='3' data-opt='3' data-index='{{index}}' bindtap='optOder'>支付</button>

@@ -43,7 +43,7 @@ Page({
         statusData: array
       });
     }, function (res) {
-      app.common.errorToShow("请求失败:" + res.msg);
+      app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
 
   },

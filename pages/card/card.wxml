@@ -20,11 +20,10 @@
       <image src="../../static/image/bankcard.png" />
     </view>
     <view class="card-top-detail-bd">
-      <text>共计会员卡</text>
+      <text>共计会员卡{{cardNum}}张</text>
     </view>
-    <view class="card-top-detail-ft">
-      <text>{{cardNum}}</text>
-      <text>张</text>
+    <view class="card-top-detail-ft"  bindtap="inoutListDetail">
+      <view>收支明细>></view>
     </view>
     <view class='area-clean'></view>
   </view>

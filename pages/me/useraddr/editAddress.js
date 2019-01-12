@@ -23,6 +23,13 @@ Page({
     let id = options.id;
     if (id) {
       this.getAddressInfo(id);
+    }else{
+      let mobile = wx.getStorageSync('userMobile')
+      if (mobile){
+        this.setData({
+          contactPhone: mobile
+        });
+      }
     }
   },
 

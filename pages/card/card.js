@@ -45,10 +45,17 @@ Page({
 
   },
 
-  //事件处理函数
+  //绑定卡
   scanCardNumber: function() {
     wx.navigateTo({
       url: 'cardbind',
+    })
+  },
+  
+  //交易流水
+  inoutListDetail: function () {
+    wx.navigateTo({
+      url: 'inoutlist',
     })
   },
 

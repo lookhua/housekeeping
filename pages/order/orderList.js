@@ -11,18 +11,21 @@ Page({
     pageIndex: 0,
     pageSize: 10,
     content: [{
+        id:1,
         serviceBeginTime: "2018-09-03 03:00-06:00",
         serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
         remark: "多带洗衣服，多带两个人来",
         payMoney: 120
       },
       {
+        id: 1,
         serviceBeginTime: "2018-09-03 03:00-06:00",
         serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
         remark: "多带洗衣服，多带两个人来",
         payMoney: 120
       },
       {
+        id: 1,
         serviceBeginTime: "2018-09-03 03:00-06:00",
         serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
         remark: "多带洗衣服，多带两个人来",
@@ -54,6 +57,21 @@ Page({
     last: false,
     first: false,
     empty: false
+  },
+
+
+  /**
+   * 初始化页面参数
+   */
+  reversParams: function(tagId) {
+    this.setData({
+      tabselected: tagId,
+      pageIndex: 0,
+      pageSize: 10,
+      last: false,
+      first: false,
+      empty: false
+    });
   },
 
   /**
@@ -97,44 +115,48 @@ Page({
     var userId = wx.getStorageSync('userId');
     var orderStatus = page.data.orderStatus;
     this.getOrderList(userId, orderStatus, page.data);
-
   },
 
-  getOrderList: function(userId, serverId, orderStatus, data, up = false) {
+  getOrderList: function(userId, orderStatus, up = false) {
+    var page = this;
     var url = '';
-    if (type == 3) { //3-保洁人员
+    if (page.data.type == 3) { //3-保洁人员
       url = 'order/getOrdersByServicer';
     } else {
       url = 'order/getOrdersByConsumer';
     }
-    var pageIndex = data.pageIndex;
-    var pageSize = data.pageSize;
-    var currentCount = data.numberOfElements;
-    var first = data.first;
-    var last = data.last;
+    var pageIndex = page.data.pageIndex;
+    var pageSize = page.data.pageSize;
+    var currentCount = page.data.numberOfElements;
+    var first = page.data.first;
+    var last = page.data.last;
     if (up) { //下拉刷新
       pageIndex = 1;
     } else { //上拉刷新
-      if (pageSize > currentCount){
+      if (pageSize > currentCount) {
         pageIndex = pageIndex;
-      }else{
+        if(pageIndex <= 0){
+          pageIndex = 1;
+        }
+      } else {
         pageIndex = pageIndex + 1;
       }
-
     }
-
+    console.log("get Order List with status is " + orderStatus + " and pageIndex is " + pageIndex + " and pageSize is " + pageSize)
     //订单列表
     app.requestUrl(url, {
       userId: userId,
       orderStatus: orderStatus,
-      pageIndex: 1,
-      pageSize: 10
+      pageIndex: pageIndex,
+      pageSize: pageSize
     }, 'POST', function(res) {
-      this.setData(res.data.data);
+      console.log("get order list success!");
+      page.setData(res.data.data);
     }, function(res) {
-      app.common.errorToShow("请求失败:" + res.msg);
+      app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -158,32 +180,54 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 顶部的页面
+
    */
   topMenuTap: function(e) {
-
     //get the selected tagid 
-    let tagId = e.target.dataset.tagid;
-    let orderStatus = this.tagId2OrderStatus(tagId);
+    var page = this;
+    var userId = wx.getStorageSync('userId');
+    var tagId = e.target.dataset.tagid;
+    var orderStatus = this.tagId2OrderStatus(tagId);
     console.log("you chioce tagid is " + tagId)
-
+    this.reversParams(tagId);
     //get the order list 
-
-    //set data
-    this.setData({
-      tabselected: tagId
-    });
+    this.getOrderList(userId, orderStatus, page.data);
   },
 
   optOder: function(e) {
+    // let orderIndex = e.target.dataset.index;
+    // let tagId = e.target.dataset.tagid;
+    // console.log("you chioce tagId is " + tagId)
+    // console.log("you chioce orderIndex is " + orderIndex)
+    // wx.navigateTo({
+    //   url: 'orderPay'
+    // });
+  },
+
+  cancelOrder:function(e){
+    let page = this;
     let orderIndex = e.target.dataset.index;
-    let tagId = e.target.dataset.tagid;
-    console.log("you chioce tagId is " + tagId)
-    console.log("you chioce orderIndex is " + orderIndex)
+    let orderId = page.data.content[orderIndex].id;
+    app.requestUrl('order/cancelOrder', {
+      orderId: orderId
+    }, 'POST', function (res) {
+      console.log("cancelOrder success!");
+      page.onPullDownRefresh();
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
+  },
+
+  orderDetail: function (e) {
+    let page = this;
+    let orderIndex = e.target.dataset.index;
+    let orderId = page.data.content[orderIndex].id || '';
     wx.navigateTo({
-      url: 'orderPay'
+      url: 'orderPay?orderId=' + orderId
     });
   },
+
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -191,27 +235,14 @@ Page({
   onPullDownRefresh: function() {
     console.log("you are in onPullDownRefresh")
     // 下拉刷新
-
     // 显示顶部刷新图标
     //wx.showNavigationBarLoading();
     var that = this;
-
-    var moment_list = that.data.orderList;
-    console.log("you are in onPullDownRefresh moment_list1 " + moment_list.length)
-    moment_list.unshift({
-      serviceBeginTime: "2018-09-03 03:00-06:00",
-      serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
-      remark: "多带洗衣服，多带两个人来",
-      payMoney: 120
-    });
-
-    console.log("you are in onPullDownRefresh moment_list2 " + moment_list.length)
-
-
-    // 设置数组元素
-    that.setData({
-      orderList: moment_list
-    });
+    var moment_list = that.data.content;
+    var userId = wx.getStorageSync('userId');
+    var orderStatus = that.data.orderStatus;
+    this.reversParams(that.data.tabselected);
+    this.getOrderList(userId, orderStatus, true);
 
     // 隐藏导航栏加载框
     //wx.hideNavigationBarLoading();
@@ -226,25 +257,19 @@ Page({
    */
   onReachBottom: function() {
     console.log("you are in onReachBottom")
-    var that = this;
     // 显示加载图标
     wx.showLoading({
       title: '玩命加载中',
     })
-    var moment_list = that.data.orderList;
-    moment_list.push({
-      serviceBeginTime: "2018-09-03 03:00-06:00",
-      serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
-      remark: "多带洗衣服，多带两个人来",
-      payMoney: 120
-    });
 
-    // 设置数据
-    this.setData({
-      orderList: moment_list
-    })
+    var that = this;
+    var moment_list = that.data.content;
+    var userId = wx.getStorageSync('userId');
+    var orderStatus = that.data.orderStatus;
+    this.getOrderList(userId, orderStatus, false);
+
+    // 关闭加载图标
     wx.hideLoading();
-
   },
 
   /**
