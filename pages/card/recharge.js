@@ -8,13 +8,13 @@ Page({
    */
   data: {
     rechargeItemList: [
-    //   {
-    //   id: 0,
-    //   title: 0,
-    //   rechargeMoney: 0,
-    //   presentMoney: 0,
-    //   remark: 0
-    // }
+      //   {
+      //   id: 0,
+      //   title: 0,
+      //   rechargeMoney: 0,
+      //   presentMoney: 0,
+      //   remark: 0
+      // }
     ],
     needPay: 0,
     realRecharge: 0,
@@ -34,7 +34,7 @@ Page({
     console.log("getorderInit userid is " + userId)
     app.requestUrl('recharge/rechagerTypeList', {}, 'POST', function(res) {
       page.setData({
-        rechargeItemList:res.data.data
+        rechargeItemList: res.data.data
       });
     }, function() {
       app.common.errorToShow("请求失败");
@@ -79,35 +79,33 @@ Page({
     }
     var data = {
       userId: userId,
-      itemSelected: this.data.itemSelected,
+      id: this.data.itemSelected || 0,
       inputMoney: this.data.inputMonney
     };
-    app.requestUrl('recharge/saveRechager', data, 'POST', function(res) {
-      if (res.status) {
-        wx.requestPayment({
-          'timeStamp': '' + res.data.timeStamp,
-          'nonceStr': res.data.nonceStr,
-          'package': res.data.package,
-          'signType': res.data.signType,
-          'paySign': res.data.paySign,
-          'success': function(e) {
-            if (e.errMsg == "requestPayment:ok") {
-              app.common.errorToBack('支付成功');
-            } else if (res.errMsg == 'requestPayment:cancel') {
-              app.common.errorToShow('支付已取消');
-            }
-          },
-          'fail': function(e) {
-            app.common.errorToShow('支付失败请重新支付');
+    app.requestUrl('recharge/prepay', data, 'POST', function(res) {
+      wx.requestPayment({
+        'timeStamp': '' + res.data.timeStamp,
+        'nonceStr': res.data.nonceStr,
+        'package': res.data.package,
+        'signType': res.data.signType,
+        'paySign': res.data.paySign,
+        'success': function(e) {
+          if (e.errMsg == "requestPayment:ok") {
+            app.common.errorToBack('支付成功');
+            setTimeout(function () {
+              wx.navigateBack(1);
+            }, 1500);
+          } else if (res.errMsg == 'requestPayment:cancel') {
+            app.common.errorToShow('支付已取消');
           }
-        });
-      } else {
-        app.common.errorToShow('支付订单出现问题，请返回重新操作');
-      }
-    }, function () {
-      app.common.errorToShow("请求失败");
+        },
+        'fail': function(e) {
+          app.common.errorToShow('支付失败请重新支付');
+        }
+      });
+    }, function(res) {
+      app.common.errorToShow("支付订单出现问题，请返回重新操作");
     }, true);
-
 
   }
 

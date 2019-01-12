@@ -1,14 +1,14 @@
 {
   "pages": [
+    "pages/card/recharge",
+    "pages/index/index",
     "pages/card/inoutlist",
     "pages/card/card",
-    "pages/index/index",
     "pages/order/orderPay",
     "pages/order/orderList",
     "pages/msg/msg",
     "pages/me/index/index",
     "pages/me/info/info",
-    "pages/card/recharge",
     "pages/card/cardbind",
     "pages/me/userAddr/addressList",
     "pages/order/orderConfirm",

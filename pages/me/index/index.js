@@ -7,7 +7,8 @@ Page({
     userType: 2,
     nickname: '',
     point: 0, //用户积分
-    balance: '0.00', //用户余额
+    cardTotalBalance: '0.00', //用户余额
+    cardTotalHour: '0.00', //用户余额
     isPoint: true, //开启积分
     avatar: '/static/image/default_avatar.png',
     bindMobile: false,
@@ -46,6 +47,14 @@ Page({
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
 
+    //余额积分
+    app.requestUrl('card/userCardSurvey', {
+      userId: userId
+    }, 'POST', function (res) {
+      page.setData(res.data.data);
+    }, function () {
+      app.common.errorToShow("请求失败");
+    }, true);
   },
 
   //查看全部订单
