@@ -1,10 +1,10 @@
 <view class="msg-center">
   <view class="msg-center-items">
-    <view  wx:for="{{msgList}}" wx:key="id" wx:for-item="item" class="msg-center-item">
+    <view wx:for="{{content}}" wx:key="id" wx:for-index="index" wx:for-item="item" class="msg-center-item">
       <view class='msg-center-item-head-title'>{{item.title}}</view>
-      <view class='msg-center-item-head-content'>{{item.content}}</view>
+      <view class='msg-center-item-head-content'>{{item.message}}</view>
       <view class="msg-center-item-foot">
-        <text>{{item.creatTime}}</text>
+        <text>{{item.publishTime}}</text>
       </view>
     </view>
   </view>

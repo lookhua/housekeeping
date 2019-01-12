@@ -4,35 +4,48 @@ const app = getApp()
 
 Page({
   data: {
-    msgList: [{
-        id: 1,
-        title: "优惠券消息",
-        content: "fwefwefwef",
-        creatTime:"2018-10-09"
+    pageIndex: 0,
+    pageSize: 10,
+    content: [{
+      id: 0,
+      type: 0,
+      message: 0,
+      publishTime: 0,
+      invalidTime: 0,
+      createDate: 0,
+      status: 0,
+    }],
+    pageable: {
+      sort: {
+        sorted: true,
+        unsorted: false,
+        empty: false
       },
-      {
-        id: 2,
-        title: "优惠券消息",
-        content: " 在做小程序的时候遇到在text标签里面的文本过长,需要限制显示长度,并且在限制了长度的后面加上省略号代表后面还有内容。 这时候设置样式",
-        creatTime: "2018-10-09"
-      },
-      {
-        id: 3,
-        title: "优惠券消息",
-        content: "fwefwefwef",
-        creatTime: "2018-10-09"
-      }
-
-    ]
+      offset: 0,
+      pageSize: 10,
+      pageNumber: 0,
+      unpaged: false,
+      paged: true
+    },
+    totalPages: 0,
+    totalElements: 0,
+    number: 0,
+    size: 10,
+    numberOfElements: 0,
+    sort: {
+      sorted: true,
+      unsorted: false,
+      empty: false
+    },
+    last: false,
+    first: false,
+    empty: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var orderId = options.orderId || '';
-    this.setData({
-      orderId: orderId
-    })
+
   },
 
   /**
@@ -48,34 +61,7 @@ Page({
   onShow: function () {
     var page = this;
     var userId = wx.getStorageSync('userId');
-    //订单信息
-    app.requestUrl('order/userCardSurvey', {
-      userId: userId,
-      orderId: page.orderId
-    }, 'POST', function (res) {
-      page.setData({
-        wallet: {
-          cardCount: res.data.cardNum,
-          balance: res.data.cardTotalBalance
-        }
-      });
-    }, function (res) {
-      app.common.errorToShow("请求失败:" + res.data.msg);
-    }, true);
-
-    //获取卡信息
-    app.requestUrl('card/userCardSurvey', {
-      userId: userId
-    }, 'POST', function (res) {
-      page.setData({
-        wallet: {
-          cardCount: res.data.cardNum,
-          balance: res.data.cardTotalBalance
-        }
-      });
-    }, function (res) {
-      app.common.errorToShow("请求失败:" + res.data.msg);
-    }, true);
+    page.getContentList(userId);
   },
 
   /**
@@ -91,5 +77,88 @@ Page({
   onUnload: function () {
 
   },
+
+  /**
+   * 初始化页面参数
+   */
+  reversParams: function () {
+    this.setData({
+      pageIndex: 0,
+      pageSize: 10,
+      last: false,
+      first: false,
+      empty: false
+    });
+  },
+
+  /**
+ * 页面相关事件处理函数--监听用户下拉动作
+ */
+  onPullDownRefresh: function () {
+    console.log("you are in onPullDownRefresh")
+    // 下拉刷新
+    // 显示顶部刷新图标
+    //wx.showNavigationBarLoading();
+    var that = this;
+    var userId = wx.getStorageSync('userId');
+    this.reversParams();
+    this.getContentList(userId,true);
+
+    // 隐藏导航栏加载框
+    //wx.hideNavigationBarLoading();
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    console.log("you are in onReachBottom")
+    // 显示加载图标
+    wx.showLoading({
+      title: '玩命加载中',
+    })
+    var that = this;
+    var userId = wx.getStorageSync('userId');
+    this.getContentList(userId, false);
+    // 关闭加载图标
+    wx.hideLoading();
+  },
+
+  getContentList: function (userId, up = false) {
+    var page = this;
+    var url = 'message/getMessageByUserId';
+    var pageIndex = page.data.pageIndex;
+    var pageSize = page.data.pageSize;
+    var currentCount = page.data.numberOfElements;
+    var first = page.data.first;
+    var last = page.data.last;
+    if (up) { //下拉刷新
+      pageIndex = 1;
+    } else { //上拉刷新
+      if (pageSize > currentCount) {
+        pageIndex = pageIndex;
+        if (pageIndex <= 0) {
+          pageIndex = 1;
+        }
+      } else {
+        pageIndex = pageIndex + 1;
+      }
+    }
+    console.log("get message List with userId is " + userId + " and pageIndex is " + pageIndex + " and pageSize is " + pageSize)
+    //订单列表
+    app.requestUrl(url, {
+      userId: userId,
+      pageIndex: pageIndex,
+      pageSize: pageSize
+    }, 'GET', function (res) {
+      console.log("get message list success!");
+      page.setData(res.data.data);
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
+  }
 
 })

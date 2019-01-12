@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/msg/msg",
     "pages/index/index",
     "pages/card/inoutlist",
     "pages/card/card",
@@ -13,8 +14,7 @@
     "pages/order/orderConfirm",
     "pages/me/userAddr/editAddress",
     "pages/me/userSetting/userSetting",
-    "pages/login/login",
-    "pages/msg/msg"
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

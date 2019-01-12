@@ -1,0 +1,20 @@
+<view class="inout-center">
+  <view class="inout-center-items" wx:for="{{inoutList}}" wx:for-index="idx" wx:for-item="inout">
+    <view class="inout-center-item">
+      <view class='inout-center-item-head-title'>
+
+        <view class='inout-center-item-head-title-lf'>
+          {{inout.title}}
+        </view>
+        <view class="inout-center-item-head-title-lf green {{inout.money<0? 'red':''}}">
+        {{inout.money<0? '':'+'}}{{inout.money}}
+        </view>
+
+      </view>
+      <view class='inout-center-item-head-content'>{{inout.content}}</view>
+      <view class="inout-center-item-foot">
+        <text>{{inout.creatTime}}</text>
+      </view>
+    </view>
+  </view>
+</view>
