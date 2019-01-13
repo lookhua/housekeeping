@@ -235,12 +235,26 @@ Page({
     }, true);
   },
 
+  startService:function(e){
+    let page = this;
+    let orderIndex = e.target.dataset.index;
+    let orderId = page.data.content[orderIndex].id;
+    app.requestUrl('order/startService', {
+      orderId: orderId
+    }, 'GET', function (res) {
+      console.log("cancelOrder success!");
+      page.onPullDownRefresh();
+    }, function (res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
+  },
+
   orderDetail: function (e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
     let orderId = this.data.content[orderIndex].id || '';
     wx.navigateTo({
-      url: 'orderPay?orderId=' + orderId
+      url: 'orderPay?orderId=' + orderId +'&userType='+page.data.userType
     });
   },
   
@@ -248,8 +262,9 @@ Page({
     let page = this;
     let orderIndex = e.target.dataset.index;
     let orderId = this.data.content[orderIndex].id || '';
+
     wx.navigateTo({
-      url: 'orderPay?orderId=' + orderId
+      url: 'orderPay?orderId=' + orderId + '&userType=' + page.data.userType
     });
   },
 
@@ -258,7 +273,7 @@ Page({
     let orderIndex = e.target.dataset.index;
     let orderId = this.data.content[orderIndex].id || '';
     wx.navigateTo({
-      url: 'comment?orderId=' + orderId
+      url: 'comment?orderId=' + orderId + '&userType=' + page.data.userType
     });
   },
 

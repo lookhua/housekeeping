@@ -86,7 +86,7 @@
     </view>
 
 
-    <view class="cell-list-items">
+    <view class="cell-list-items" wx:if="{{userType==2 && orderStatus == 3}}">
       <view class="cell-list-item1">
         <view class="cell-list-item-text">
           <view class="">
@@ -114,12 +114,21 @@
 
   </view>
 </view>
-<view class="page-bottown-toolbar">
+<view class="page-bottown-toolbar" wx:if="{{userType==2 && orderStatus == 3}}">
   <view class="page-bottown-toolbar-left">
     <!-- <text>待支付：</text>
     <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text> -->
   </view>
   <view class="page-bottown-toolbar-right">
     <button type='warn' bindtap="payOrder">支付</button>
+  </view>
+</view>
+<view class="page-bottown-toolbar" wx:if="{{userType==2 && orderStatus == 4}}">
+  <view class="page-bottown-toolbar-left">
+    <!-- <text>待支付：</text>
+    <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text> -->
+  </view>
+  <view class="page-bottown-toolbar-right">
+    <button type='warn' bindtap="payOrder">去评价</button>
   </view>
 </view>

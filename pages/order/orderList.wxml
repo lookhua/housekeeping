@@ -42,6 +42,19 @@
             <text class='order-list-item-body-line-title'>预约备注：</text>
             <text class='order-list-item-body-line-content'>{{item.remark==null?"无":item.remark}}</text>
           </view>
+          <view class='order-list-item-body-line'>
+            <!-- <image class='order-list-item-body-lfimg' src="/static/order/bz1.png"></image> -->
+            <text class='order-list-item-body-line-title'>服务开始时间：</text>
+            <text class='order-list-item-body-line-content' wx:if="{{item.serviceTime == null}}">未开始服务</text>
+            <text class='order-list-item-body-line-content' wx:else>{{item.serviceTime}}</text>
+          </view>
+          <view class='order-list-item-body-line'>
+            <!-- <image class='order-list-item-body-lfimg' src="/static/order/bz1.png"></image> -->
+            <text class='order-list-item-body-line-title'>服务结束时间：</text>
+            <text class='order-list-item-body-line-content' wx:if="{{item.serviceTime == null && item.endTime == null}}">未开始服务</text>
+            <text class='order-list-item-body-line-content' wx:elif="{{item.serviceTime != null && item.endTime == null}}">服务中</text>
+            <text class='order-list-item-body-line-content' wx:else>{{item.serviceTime}}</text>
+          </view>
         </view>
         <view class="order-list-item-foot" wx:if="{{userType==2}}">
           <view class="order-list-item-foot-left">
@@ -61,20 +74,23 @@
             <button data-tagId='4' data-opt='4' data-index='{{index}}' bindtap='orderCommect'>评价</button>
           </view>
           <view wx:else>
-            <button data-tagId='0' data-opt='0' data-index='{{index}}' bindtap='optOder'>订单详情</button>
+            <button data-tagId='0' data-opt='0' data-index='{{index}}' bindtap='orderDetail'>订单详情</button>
           </view>
         </view>
 
         <view class="order-list-item-foot" wx:if="{{userType==3}}">
           <view class="order-list-item-foot-left">
             <text class='order-list-item-foot-left-tip'>小计金额：</text>
-            <text class='order-list-item-foot-left-imp'>¥{{item.payMoney}}</text>
+            <text class='order-list-item-foot-left-imp'>¥{{item.serviceMoney}}</text>
           </view>
-          <view wx:if="{{tabselected==2}}">
+          <view wx:if="{{tabselected==2 && item.serviceTime == null}}">
+            <button data-tagId='2' data-opt='5' data-index='{{index}}' bindtap='startService'>服务开始</button>
+          </view>
+          <view wx:if="{{tabselected==2 && item.serviceTime != null}}">
             <button data-tagId='2' data-opt='5' data-index='{{index}}' bindtap='endService'>服务完成</button>
           </view>
           <view wx:elif="{{tabselected==0}}">
-            <button data-tagId='0' data-opt='0' data-index='{{index}}' bindtap='optOder'>订单详情</button>
+            <button data-tagId='0' data-opt='0' data-index='{{index}}' bindtap='orderDetail'>订单详情</button>
           </view>
         </view>
 

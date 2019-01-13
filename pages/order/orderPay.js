@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: 2,
     orderId: '',
     payMoney: 120,
     id: 5,
@@ -38,7 +39,7 @@ Page({
     versionKey: null,
     partionKey: null,
     status: 1,
-      selectType: 1,
+    selectType: 1,
     wallet: {
       cardCount: 4,
       balance: 250,
@@ -50,10 +51,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var orderId = options.orderId || 0;
+    let orderId = options.orderId || 0;
+    let type = options.userType || 2; //2-用户，3-保洁人员
+    
     this.setData({
-      orderId: orderId
+      orderId: orderId,
+      userType: type
     })
+  },
+
+  orderCommect: function(e) {
+    let page = this;
+    let orderId = page.data.id;
+    wx.navigateTo({
+      url: 'comment?orderId=' + orderId + '&userType=' + page.data.userType
+    });
   },
 
   /**
@@ -76,6 +88,7 @@ Page({
       orderId: orderId
     }, 'GET', function(res) {
       page.setData(res.data.data);
+ 
     }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
@@ -86,7 +99,7 @@ Page({
     }, 'POST', function(res) {
       page.setData({
         wallet: {
-          selectType:1,
+          selectType: 1,
           cardCount: res.data.data.cardNum,
           balance: res.data.data.cardTotalBalance,
           hours: res.data.data.cardTotalHour
@@ -165,11 +178,11 @@ Page({
       orderId: orderId
     }, 'POST', function(res) {
       app.common.errorToShow("支付成功");
-      setTimeout(function () {
+      setTimeout(function() {
         wx.navigateBack(1);
       }, 1500);
     }, function(res) {
-      app.common.errorToShow("请求失败:" + res.data.msg);
+      app.common.errorToShow(res.data.msg);
     }, true);
   }
 
