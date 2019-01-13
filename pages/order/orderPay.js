@@ -156,7 +156,7 @@ Page({
     }, 'POST', function(res) {
       page.setData(res.data.data);
     }, function(res) {
-      app.common.errorToShow("请求失败:" + res.data.msg);
+      app.common.errorToShow(res.data.msg);
     }, true);
   },
   /**

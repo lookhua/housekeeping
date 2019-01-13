@@ -10,28 +10,7 @@ Page({
     orderStatus: 0,
     pageIndex: 0,
     pageSize: 10,
-    content: [{
-        id:1,
-        serviceBeginTime: "2018-09-03 03:00-06:00",
-        serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
-        remark: "多带洗衣服，多带两个人来",
-        payMoney: 120
-      },
-      {
-        id: 1,
-        serviceBeginTime: "2018-09-03 03:00-06:00",
-        serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
-        remark: "多带洗衣服，多带两个人来",
-        payMoney: 120
-      },
-      {
-        id: 1,
-        serviceBeginTime: "2018-09-03 03:00-06:00",
-        serverAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
-        remark: "多带洗衣服，多带两个人来",
-        payMoney: 120
-      }
-    ],
+    content: [ ],
     pageable: {
       sort: {
         sorted: true,
@@ -114,6 +93,7 @@ Page({
     var page = this;
     var userId = wx.getStorageSync('userId');
     var orderStatus = page.data.orderStatus;
+    this.reversParams(page.data.tabselected);
     this.getOrderList(userId, orderStatus, page.data);
   },
 

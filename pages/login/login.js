@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    bindMobile: '15255108906'
+    bindMobile: ''
   },
   //输入金额
   mobileInputFun: function(e) {
