@@ -242,6 +242,15 @@ Page({
     });
   },
 
+  orderCommect: function (e) {
+    let page = this;
+    let orderIndex = e.target.dataset.index;
+    let orderId = page.data.content[orderIndex].id || '';
+    wx.navigateTo({
+      url: 'comment?orderId=' + orderId
+    });
+  },
+
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
