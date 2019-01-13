@@ -1,26 +1,22 @@
 <!--index.wxml-->
-
-
-
-<!-- 轮播广告图
-<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+<!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{advertisements}}" wx:key="{{index}}">
     <swiper-item>
       <image src="{{item.imgUrl}}" class="slide-image" bindtap="slideDetail" data-id="{{item.id}}" />
     </swiper-item>
   </block>
-</swiper> 
+</swiper>  -->
 <swiper class="fix-with" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <swiper-item>
-    <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+    <image src="/static/index/page1.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
   <swiper-item>
-    <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+    <image src="/static/index/page1.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
   <swiper-item>
-    <image src="../../static/image/write-banner.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+    <image src="/static/index/page1.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
-</swiper> -->
+</swiper>
 
 <!-- space -->
 <view class='area-space'></view>
