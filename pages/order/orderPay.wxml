@@ -8,13 +8,14 @@
         <image class="scell-list-item-lfimg" src="/static/order/baojiedz.png" />
         <view class="scell-list-item-text">
           <view class="scell-list-item-text-tile">{{consumerAddr}}</view>
-          <view class="scell-list-item-text-tile">电话:{{subscribe.telphone}}</view>
+          <view class="scell-list-item-text-tile">联系方式：{{subscribe.telphone}}</view>
         </view>
       </view>
       <view class="scell-list-item">
         <image class="scell-list-item-lfimg" src="/static/order/baojietime.png" />
         <view class="scell-list-item-text">
-          <view class="scell-list-item-text-tile">预约时间：{{subscribe.serviceTime}} 预约时长:{{subscribe.serviceHours}}小时</view>
+          <view class="scell-list-item-text-tile">预约时间：{{subscribe.serviceTime}}</view>
+          <view class="scell-list-item-text-tile">预约时长：{{subscribe.serviceHours}} 小时</view>
         </view>
       </view>
       <view class="scell-list-item">
@@ -26,9 +27,7 @@
       <view class="cell-list-item">
         <view class="cell-list-item-text cell-list-item-text-input">
           <view class="cell-list-item-text-lable">备注</view>
-          <view class="cell-list-item-text-input">
-            <text>{{remark}}</text>
-          </view>
+          <view class="cell-list-item-text-input">{{remark}}</view>
         </view>
       </view>
     </view>
@@ -45,7 +44,7 @@
         </view>
       </view>
 
-            <view class="cell-list-item">
+      <view class="cell-list-item">
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile">保洁费用</view>
           <view class="cell-list-item-text-remark">

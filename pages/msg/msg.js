@@ -6,15 +6,17 @@ Page({
   data: {
     pageIndex: 0,
     pageSize: 10,
-    content: [{
-      id: 0,
-      type: 0,
-      message: 0,
-      publishTime: 0,
-      invalidTime: 0,
-      createDate: 0,
-      status: 0,
-    }],
+    content: [
+      // {
+      // id: 0,
+      // type: 0,
+      // message: 0,
+      // publishTime: 0,
+      // invalidTime: 0,
+      // createDate: 0,
+      // status: 0,
+      // }
+    ],
     pageable: {
       sort: {
         sorted: true,

@@ -53,7 +53,7 @@
             <text class='order-list-item-body-line-title'>服务结束时间：</text>
             <text class='order-list-item-body-line-content' wx:if="{{item.serviceTime == null && item.endTime == null}}">未开始服务</text>
             <text class='order-list-item-body-line-content' wx:elif="{{item.serviceTime != null && item.endTime == null}}">服务中</text>
-            <text class='order-list-item-body-line-content' wx:else>{{item.serviceTime}}</text>
+            <text class='order-list-item-body-line-content' wx:else>{{item.endTime}}</text>
           </view>
         </view>
         <view class="order-list-item-foot" wx:if="{{userType==2}}">

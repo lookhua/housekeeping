@@ -4,22 +4,27 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     advertisements: [],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
-    duration: 1000,
-    users: []
+    duration: 1000
   },
+
   onLoad: function () {
     //获取广告列表
     // this.pullAdvertisements();
     //获取列表
     // this.pullUserInfo();
   },
-  onShow:function(){
 
+  onShow:function(){
+    var userId = wx.getStorageSync('userId');
+    if (!userId){
+      wx.navigateTo({
+        url: '../login/login'
+      })
+    }
   },
 
   pullAdvertisements: function () {
@@ -74,8 +79,8 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
-    wx.showNavigationBarLoading();
-    this.pullUserInfo();
+    //wx.showNavigationBarLoading();
+    //this.pullUserInfo();
   },
   /**
  * 页面上拉触底事件的处理函数

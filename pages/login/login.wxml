@@ -1,12 +1,21 @@
 <!--index.wxml-->
 <view class="fix-with">
-  <view class="userinfo">
-    <open-data class='head-sculpture' type="userAvatarUrl"></open-data>
-    <open-data class='username' type="userNickName"></open-data>
-  </view>
+  
   <view class="userMobileInnfo">
 
-    <view class="userMobileInnfo-title">请绑定手机号，以便我们更好的为您服务</view>
+    <view class="userMobileInnfo-title">用户信息完善</view>
+
+    <view class="userMobileInnfo-yzm">
+      <view class="userMobileInnfo-yzm-lable">
+        <label class="weui-label">昵称</label>
+      </view>
+      <view class="userMobileInnfo-yzm-mobile">
+        <input class="weui-input" value='{{nikeName}}' bindinput='nikeNameInputFun' placeholder="请输入昵称" />
+      </view>
+      <view class="userMobileInnfo-yzm-bt">
+        <button class="weui-vcode-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取微信昵称</button>
+      </view>
+    </view>
 
     <view class="userMobileInnfo-yzm">
       <view class="userMobileInnfo-yzm-lable">
@@ -19,6 +28,7 @@
         <button class="weui-vcode-btn">获取验证码</button>
       </view> -->
     </view>
+
     <view class="userMobileInnfo-yzm">
       <!-- <view class="userMobileInnfo-yzm-lable">
         <label class="weui-label">验证码</label>
@@ -31,7 +41,7 @@
     <view class='area-space'></view>
 
     <view class="">
-      <button class="weui-btn weui-btn_warn" type='warn' bindtap="bindMobileToUser">绑定手机</button>
+      <button class="weui-btn weui-btn_warn" type='warn' bindtap="bindMobileToUser">确定</button>
     </view>
 
   </view>
