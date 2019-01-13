@@ -8,8 +8,6 @@ Page({
     userType: 2,
     tabselected: 0,
     orderStatus: 0,
-    pageIndex: 0,
-    pageSize: 10,
     content: [],
     pageable: {
       sort: {
@@ -93,7 +91,6 @@ Page({
     var page = this;
     var userId = wx.getStorageSync('userId');
     var orderStatus = page.data.orderStatus;
-    
     this.getOrderList(userId, orderStatus, page.data);
   },
 
@@ -105,25 +102,18 @@ Page({
     } else {
       url = 'order/getOrdersByConsumer';
     }
-    var pageIndex = page.data.pageIndex;
-    var pageSize = page.data.pageSize;
-    var currentCount = page.data.numberOfElements;
+    var pageIndex = page.data.number;
+    var pageSize = page.data.size;
     var first = page.data.first;
     var last = page.data.last;
     if (up) { //下拉刷新
       pageIndex = 1;
     } else { //上拉刷新
-      if (last){
+      if (last) {
         app.common.errorToShow("没有更多了");
         return;
-      }
-      if (pageSize > currentCount) {
-        //pageIndex = pageIndex;
-        if (pageIndex <= 0) {
-          pageIndex = 1;
-        }
       } else {
-        pageIndex = pageIndex + 1;
+        pageIndex = pageIndex + 2;
       }
     }
     console.log("get Order List with status is " + orderStatus + " and pageIndex is " + pageIndex + " and pageSize is " + pageSize)
@@ -131,8 +121,8 @@ Page({
     app.requestUrl(url, {
       userId: userId,
       orderStatus: orderStatus,
-      pageIndex: pageIndex,
-      pageSize: pageSize
+      page: pageIndex,
+      size: pageSize
     }, 'POST', function(res) {
       console.log("get order list success!");
       if (up) {

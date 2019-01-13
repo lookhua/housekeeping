@@ -4,8 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    pageIndex: 0,
-    pageSize: 10,
     content: [
       // {
       // id: 0,
@@ -46,44 +44,44 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var page = this;
     var userId = wx.getStorageSync('userId');
-    page.getContentList(userId);
+    page.getContentList(userId, true);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 初始化页面参数
    */
-  reversParams: function () {
+  reversParams: function() {
     this.setData({
       pageIndex: 0,
       pageSize: 10,
@@ -94,9 +92,9 @@ Page({
   },
 
   /**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-  onPullDownRefresh: function () {
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
     console.log("you are in onPullDownRefresh")
     // 下拉刷新
     // 显示顶部刷新图标
@@ -104,7 +102,7 @@ Page({
     var that = this;
     var userId = wx.getStorageSync('userId');
     this.reversParams();
-    this.getContentList(userId,true);
+    this.getContentList(userId, true);
 
     // 隐藏导航栏加载框
     //wx.hideNavigationBarLoading();
@@ -116,7 +114,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log("you are in onReachBottom")
     // 显示加载图标
     wx.showLoading({
@@ -129,12 +127,11 @@ Page({
     wx.hideLoading();
   },
 
-  getContentList: function (userId, up = false) {
+  getContentList: function(userId, up = false) {
     var page = this;
     var url = 'message/getMessageByUserId';
-    var pageIndex = page.data.pageIndex;
-    var pageSize = page.data.pageSize;
-    var currentCount = page.data.numberOfElements;
+    var pageIndex = page.data.number;
+    var pageSize = page.data.size;
     var first = page.data.first;
     var last = page.data.last;
     if (up) { //下拉刷新
@@ -143,23 +140,17 @@ Page({
       if (last) {
         app.common.errorToShow("没有更多了");
         return;
-      }
-      if (pageSize > currentCount) {
-        //pageIndex = pageIndex;
-        if (pageIndex <= 0) {
-          pageIndex = 1;
-        }
       } else {
-        pageIndex = pageIndex + 1;
+        pageIndex = pageIndex + 2;
       }
     }
     console.log("get message List with userId is " + userId + " and pageIndex is " + pageIndex + " and pageSize is " + pageSize)
     //订单列表
     app.requestUrl(url, {
       userId: userId,
-      pageIndex: pageIndex,
-      pageSize: pageSize
-    }, 'GET', function (res) {
+      page: pageIndex,
+      size: pageSize
+    }, 'GET', function(res) {
       console.log("get message list success!");
       if (up) {
         page.setData(res.data.data);
@@ -171,7 +162,7 @@ Page({
         res.data.data.content = list;
         page.setData(res.data.data);
       }
-    }, function (res) {
+    }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
   }
