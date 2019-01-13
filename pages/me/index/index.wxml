@@ -4,7 +4,7 @@
     <view class='header-top'>
       <view class='top-left'>
         <text class='remaining-sum'>余额</text>
-        <text class='remainingsum-num'>{{cardTotalBalance}}</text>
+        <text class='remainingsum-num'>￥{{cardTotalBalance}}</text>
       </view>
       <!-- 头像昵称 -->
       <view class='top-mid'>
@@ -14,7 +14,7 @@
       </view>
       <view class='top-right'>
         <text class='accumulate-points' wx:if="{{isPoint}}">工时</text>
-        <text class='accumulatepoints-num' wx:if="{{isPoint}}">{{cardTotalHour}}</text>
+        <text class='accumulatepoints-num' wx:if="{{isPoint}}">{{cardTotalHour}}小时</text>
       </view>
 
     </view>
