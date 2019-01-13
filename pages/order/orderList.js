@@ -131,8 +131,11 @@ Page({
       pageSize: pageSize
     }, 'POST', function(res) {
       console.log("get order list success!");
-
-      page.setData(res.data.data);
+      if(up){
+        page.setData(res.data.data);
+      }else{
+        var data = page.data.content;
+      }
     }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);

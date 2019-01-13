@@ -10,7 +10,7 @@
           <view class="{{itemSelected==item.id?'coupons-item-selected':''}} coupons-item" 
           bindtap='chioceRechargeItem' data-index="{{index}}">
             <view class='coupons-item-chong'>
-              <text>冲</text>
+              <text>充</text>
               <text>{{item.rechargeMoney}}</text>
               <text>元</text>
             </view>
