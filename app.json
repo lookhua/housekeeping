@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/order/orderList",
     "pages/order/comment",
     "pages/order/orderConfirm",
     "pages/card/recharge",
     "pages/card/inoutlist",
     "pages/card/card",
     "pages/order/orderPay",
-    "pages/order/orderList",
     "pages/msg/msg",
     "pages/me/index/index",
     "pages/me/info/info",

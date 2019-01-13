@@ -151,6 +151,7 @@ Page({
       pageSize: pageSize
     }, 'POST', function(res) {
       console.log("get order list success!");
+
       page.setData(res.data.data);
     }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
@@ -208,6 +209,7 @@ Page({
   cancelOrder:function(e){
     let page = this;
     let orderIndex = e.target.dataset.index;
+    debugger
     let orderId = page.data.content[orderIndex].id;
     app.requestUrl('order/cancelOrder', {
       orderId: orderId
@@ -236,7 +238,16 @@ Page({
   orderDetail: function (e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
-    let orderId = page.data.content[orderIndex].id || '';
+    let orderId = this.data.content[orderIndex].id || '';
+    wx.navigateTo({
+      url: 'orderPay?orderId=' + orderId
+    });
+  },
+  
+  orderPay: function(e) {
+    let page = this;
+    let orderIndex = e.target.dataset.index;
+    let orderId = this.data.content[orderIndex].id || '';
     wx.navigateTo({
       url: 'orderPay?orderId=' + orderId
     });
@@ -245,7 +256,7 @@ Page({
   orderCommect: function (e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
-    let orderId = page.data.content[orderIndex].id || '';
+    let orderId = this.data.content[orderIndex].id || '';
     wx.navigateTo({
       url: 'comment?orderId=' + orderId
     });

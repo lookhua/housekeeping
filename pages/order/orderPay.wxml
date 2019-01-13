@@ -7,27 +7,27 @@
       <view class="scell-list-item">
         <image class="scell-list-item-lfimg" src="/static/order/baojiedz.png" />
         <view class="scell-list-item-text">
-          <view class="scell-list-item-text-tile">{{order.consumerAddr}}</view>
-          <view class="scell-list-item-text-tile">电话:{{order.subscribe.telphone}}</view>
+          <view class="scell-list-item-text-tile">{{consumerAddr}}</view>
+          <view class="scell-list-item-text-tile">电话:{{subscribe.telphone}}</view>
         </view>
       </view>
       <view class="scell-list-item">
         <image class="scell-list-item-lfimg" src="/static/order/baojietime.png" />
         <view class="scell-list-item-text">
-          <view class="scell-list-item-text-tile">服务时间：{{order.subscribe.serverTime}} 时长:{{order.subscribe.serviceHours}}小时</view>
+          <view class="scell-list-item-text-tile">预约时间：{{subscribe.serviceTime}} 预约时长:{{subscribe.serviceHours}}小时</view>
         </view>
       </view>
       <view class="scell-list-item">
         <image class="scell-list-item-lfimg" src="/static/order/baojie.png" />
         <view class="scell-list-item-text">
-          <view class="scell-list-item-text-tile">系统推荐保洁室</view>
+          <view class="scell-list-item-text-tile">系统推荐保洁师</view>
         </view>
       </view>
       <view class="cell-list-item">
         <view class="cell-list-item-text cell-list-item-text-input">
           <view class="cell-list-item-text-lable">备注</view>
           <view class="cell-list-item-text-input">
-            <text>{{order.remark}}</text>
+            <text>{{remark}}</text>
           </view>
         </view>
       </view>
@@ -37,12 +37,22 @@
 
       <view class="cell-list-item">
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">保洁费用</view>
+          <view class="cell-list-item-text-tile">保洁时长</view>
           <view class="cell-list-item-text-remark">
-            <text>¥120</text>
+            <text wx:if="{{serviceHours == null || serviceHours == 0}}">服务中</text>
+            <text wx:else> {{serviceHours}}小时</text>
           </view>
         </view>
+      </view>
 
+            <view class="cell-list-item">
+        <view class="cell-list-item-text">
+          <view class="cell-list-item-text-tile">保洁费用</view>
+          <view class="cell-list-item-text-remark">
+            <text wx:if="{{serviceMoney == null || serviceMoney == 0}}">服务中</text>
+            <text wx:else>¥{{serviceMoney}}</text>
+          </view>
+        </view>
       </view>
 
       <view class="cell-list-item">
@@ -63,7 +73,7 @@
         </view>
       </view>
 
-      <view class="cell-list-item">
+      <!-- <view class="cell-list-item">
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile"></view>
           <view class="cell-list-item-text-remark">
@@ -71,29 +81,31 @@
             <text class="oder-heji-money">¥{{payMoney}}</text>
           </view>
         </view>
-      </view>
+      </view> -->
 
     </view>
 
 
     <view class="cell-list-items">
-      <view class="cell-list-item">
+      <view class="cell-list-item1">
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">
+          <view class="">
             <radio-group class="radio-group" bindchange="radioChange">
-              <view>
+              <view class="radio-group-item">
                 <label class="radio">
-                  <radio value="1" checked="checked" />小时卡支付
+                  <radio value="1" checked="{{selectType==1}}" />小时卡支付(剩余{{wallet.hours}}小时)
                 </label>
+              </view>
+              <view class="radio-group-item">
                 <label class="radio">
-                  <radio value="2" checked="checked" />充值卡支付
+                  <radio value="2" checked="{{selectType==2}}" />充值卡支付(剩余{{wallet.balance}}元)
                 </label>
               </view>
             </radio-group>
           </view>
           <view class="cell-list-item-text-remark">
-            <text>共{{wallet.cardCount}}张卡，</text>
-            <text>余额：¥{{wallet.balance}}</text>
+            <!-- <text>共{{wallet.cardCount}}张卡，</text>
+            <text>余额：¥{{wallet.balance}}</text> -->
           </view>
         </view>
       </view>
@@ -104,8 +116,8 @@
 </view>
 <view class="page-bottown-toolbar">
   <view class="page-bottown-toolbar-left">
-    <text>待支付：</text>
-    <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text>
+    <!-- <text>待支付：</text>
+    <text class='page-bottown-toolbar-left-imp'>¥{{payMoney}}</text> -->
   </view>
   <view class="page-bottown-toolbar-right">
     <button type='warn' bindtap="payOrder">支付</button>

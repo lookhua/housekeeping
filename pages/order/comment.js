@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     orderId:'',
-    comment: ''
+    comment: '1'
   },
 
   //输入评价

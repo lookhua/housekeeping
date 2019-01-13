@@ -120,3 +120,17 @@ page {
 .radio-group {
   margin-left: 10rpx;
 }
+.radio-group-item{
+  margin:28rpx 0rpx; 
+}
+.cell-list-item1 {
+  position: relative;
+  font-size: 28rpx;
+  margin-bottom: 2rpx;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+

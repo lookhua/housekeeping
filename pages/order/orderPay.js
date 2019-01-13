@@ -7,14 +7,42 @@ Page({
   data: {
     orderId: '',
     payMoney: 120,
-    order: {
-      remark: '速度点,多带点洗碟精',
-      serviceAddr: "安徽省合肥市长江西路红枫路与尔西二环交口航线家园12栋1208室",
-      serverTime: '2019-09-18 12:00-13:00'
-    },
+    id: 5,
+    subscribe: {},
+    service: {},
+    payment: null,
+    hours: null,
+    serviceHours: null,
+    orderStatus: 2,
+    dispatchTime: null,
+    subscribeTime: null,
+    confirmTime: null,
+    serviceTime: null,
+    endTime: null,
+    paymentTime: null,
+    evaluateTime: null,
+    closeTime: null,
+    servicer: {},
+    consumer: {},
+    consumerName: '',
+    consumerAddr: '',
+    consumerPhone: '',
+    servicerName: '',
+    servicerPhone: '',
+    isEffective: null,
+    isDispatch: 1,
+    title: null,
+    remark: '',
+    createDate: null,
+    updateDate: null,
+    versionKey: null,
+    partionKey: null,
+    status: 1,
+      selectType: 1,
     wallet: {
       cardCount: 4,
-      balance: 250
+      balance: 250,
+      hours: 0
     }
   },
 
@@ -58,9 +86,12 @@ Page({
     }, 'POST', function(res) {
       page.setData({
         wallet: {
-          cardCount: res.data.cardNum,
-          balance: res.data.cardTotalBalance
+          selectType:1,
+          cardCount: res.data.data.cardNum,
+          balance: res.data.data.cardTotalBalance,
+          hours: res.data.data.cardTotalHour
         }
+
       });
     }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
@@ -95,6 +126,26 @@ Page({
 
   },
 
+  radioChange: function(e) {
+    var page = this;
+    let type = e.detail.value;
+    console.log('radio发生change事件，携带value值为：' + type)
+    page.setData({
+      selectType: type
+    });
+    var userId = wx.getStorageSync('userId');
+    var orderId = page.data.id;
+    //订单信息
+    app.requestUrl('recharge/isEnoughMoney', {
+      userId: userId,
+      type: type,
+      orderId: orderId
+    }, 'POST', function(res) {
+      page.setData(res.data.data);
+    }, function(res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
+  },
   /**
    * 用户点击右上角分享
    */
@@ -103,9 +154,23 @@ Page({
   },
 
   payOrder: function() {
-    wx.navigateTo({
-      url: '../member/order/orderList/orderList'
-    })
+    var page = this;
+    var type = page.data.selectType;
+    var userId = wx.getStorageSync('userId');
+    var orderId = page.data.id;
+    //订单信息
+    app.requestUrl('recharge/rechagerOrder', {
+      userId: userId,
+      type: type,
+      orderId: orderId
+    }, 'POST', function(res) {
+      app.common.errorToShow("支付成功");
+      setTimeout(function () {
+        wx.navigateBack(1);
+      }, 1500);
+    }, function(res) {
+      app.common.errorToShow("请求失败:" + res.data.msg);
+    }, true);
   }
 
 })
