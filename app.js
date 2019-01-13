@@ -21,6 +21,7 @@ App({
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
               //wx登录session check
+              
               this.userWxSessionCheck();
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -32,7 +33,13 @@ App({
         }
       }
     }) // 获取用户信息
+    this.userWxSessionCheck();
 
+  },
+
+  userInfoReadyCallback:function(res){
+    this.globalData.userInfo = res.userInfo
+    this.userWxSessionCheck();
   },
 
   //wx登录session check
@@ -64,7 +71,7 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var url = this.config.api_url;
-        var nickName = this.globalData.userInfo.nickName;
+        var nickName = 'nickname';//this.globalData.userInfo.nickName;
         console.log("nickname is " + nickName);
         var data = {
           code: res.code,
