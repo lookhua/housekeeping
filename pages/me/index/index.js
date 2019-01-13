@@ -12,7 +12,7 @@ Page({
     isPoint: true, //开启积分
     avatar: '/static/image/default_avatar.png',
     bindMobile: false,
-    statusData: [0, 1, 2, 3, 4], //状态数据
+    statusData: [0, 0, 0, 0, 0], //状态数据
     isClerk: false, //是不是店员
   },
 
@@ -30,9 +30,9 @@ Page({
     //加载订单数量
     app.requestUrl('order/getOrdersAmount', {
       userId: userId
-    }, 'POST', function (res) {
+    }, 'POST', function(res) {
       var array = [0];
-      var preOrder = res.data.data.confirmamount || 1;
+      var preOrder = res.data.data.confirmamount || 0;
       array.push(preOrder);
       var preService = res.data.data.serviceamount || 0;
       array.push(preService);
@@ -43,16 +43,16 @@ Page({
       page.setData({
         statusData: array
       });
-    }, function (res) {
+    }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
 
     //余额积分
     app.requestUrl('card/userCardSurvey', {
       userId: userId
-    }, 'POST', function (res) {
+    }, 'POST', function(res) {
       page.setData(res.data.data);
-    }, function () {
+    }, function() {
       app.common.errorToShow("请求失败");
     }, true);
   },

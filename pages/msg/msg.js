@@ -138,8 +138,12 @@ Page({
     if (up) { //下拉刷新
       pageIndex = 1;
     } else { //上拉刷新
+      if (last) {
+        app.common.errorToShow("没有更多了");
+        return;
+      }
       if (pageSize > currentCount) {
-        pageIndex = pageIndex;
+        //pageIndex = pageIndex;
         if (pageIndex <= 0) {
           pageIndex = 1;
         }
@@ -155,7 +159,16 @@ Page({
       pageSize: pageSize
     }, 'GET', function (res) {
       console.log("get message list success!");
-      page.setData(res.data.data);
+      if (up) {
+        page.setData(res.data.data);
+      } else {
+        var list = page.data.content;
+        for (var i = 0; i < res.data.data.content.length; i++) {
+          list.push(res.data.data.content[i]);
+        }
+        res.data.data.content = list;
+        page.setData(res.data.data);
+      }
     }, function (res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);

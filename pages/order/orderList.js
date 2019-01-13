@@ -10,7 +10,7 @@ Page({
     orderStatus: 0,
     pageIndex: 0,
     pageSize: 10,
-    content: [ ],
+    content: [],
     pageable: {
       sort: {
         sorted: true,
@@ -93,7 +93,7 @@ Page({
     var page = this;
     var userId = wx.getStorageSync('userId');
     var orderStatus = page.data.orderStatus;
-    this.reversParams(page.data.tabselected);
+    
     this.getOrderList(userId, orderStatus, page.data);
   },
 
@@ -113,9 +113,13 @@ Page({
     if (up) { //下拉刷新
       pageIndex = 1;
     } else { //上拉刷新
+      if (last){
+        app.common.errorToShow("没有更多了");
+        return;
+      }
       if (pageSize > currentCount) {
-        pageIndex = pageIndex;
-        if(pageIndex <= 0){
+        //pageIndex = pageIndex;
+        if (pageIndex <= 0) {
           pageIndex = 1;
         }
       } else {
@@ -131,10 +135,15 @@ Page({
       pageSize: pageSize
     }, 'POST', function(res) {
       console.log("get order list success!");
-      if(up){
+      if (up) {
         page.setData(res.data.data);
-      }else{
-        var data = page.data.content;
+      } else {
+        var list = page.data.content;
+        for (var i = 0; i < res.data.data.content.length; i++) {
+          list.push(res.data.data.content[i]);
+        }
+        res.data.data.content = list;
+        page.setData(res.data.data);
       }
     }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
@@ -189,58 +198,57 @@ Page({
     // });
   },
 
-  cancelOrder:function(e){
+  cancelOrder: function(e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
-    debugger
     let orderId = page.data.content[orderIndex].id;
     app.requestUrl('order/cancelOrder', {
       orderId: orderId
-    }, 'POST', function (res) {
+    }, 'POST', function(res) {
       console.log("cancelOrder success!");
       page.onPullDownRefresh();
-    }, function (res) {
+    }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
   },
 
-  endService: function (e) {
+  endService: function(e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
     let orderId = page.data.content[orderIndex].id;
     app.requestUrl('order/endService', {
       orderId: orderId
-    }, 'GET', function (res) {
+    }, 'GET', function(res) {
       console.log("cancelOrder success!");
       page.onPullDownRefresh();
-    }, function (res) {
+    }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
   },
 
-  startService:function(e){
+  startService: function(e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
     let orderId = page.data.content[orderIndex].id;
     app.requestUrl('order/startService', {
       orderId: orderId
-    }, 'GET', function (res) {
+    }, 'GET', function(res) {
       console.log("cancelOrder success!");
       page.onPullDownRefresh();
-    }, function (res) {
+    }, function(res) {
       app.common.errorToShow("请求失败:" + res.data.msg);
     }, true);
   },
 
-  orderDetail: function (e) {
+  orderDetail: function(e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
     let orderId = this.data.content[orderIndex].id || '';
     wx.navigateTo({
-      url: 'orderPay?orderId=' + orderId +'&userType='+page.data.userType
+      url: 'orderPay?orderId=' + orderId + '&userType=' + page.data.userType
     });
   },
-  
+
   orderPay: function(e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
@@ -251,7 +259,7 @@ Page({
     });
   },
 
-  orderCommect: function (e) {
+  orderCommect: function(e) {
     let page = this;
     let orderIndex = e.target.dataset.index;
     let orderId = this.data.content[orderIndex].id || '';
@@ -270,10 +278,10 @@ Page({
     // 显示顶部刷新图标
     //wx.showNavigationBarLoading();
     var that = this;
-    var moment_list = that.data.content;
     var userId = wx.getStorageSync('userId');
-    var orderStatus = that.data.orderStatus;
-    this.reversParams(that.data.tabselected);
+    var tagId = that.data.tabselected;
+    var orderStatus = this.tagId2OrderStatus(tagId);
+    this.reversParams(tagId);
     this.getOrderList(userId, orderStatus, true);
 
     // 隐藏导航栏加载框
@@ -293,11 +301,10 @@ Page({
     wx.showLoading({
       title: '玩命加载中',
     })
-
     var that = this;
-    var moment_list = that.data.content;
     var userId = wx.getStorageSync('userId');
-    var orderStatus = that.data.orderStatus;
+    var tagId = that.data.tabselected;
+    var orderStatus = this.tagId2OrderStatus(tagId);
     this.getOrderList(userId, orderStatus, false);
 
     // 关闭加载图标
