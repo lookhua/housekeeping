@@ -2,7 +2,7 @@
   <view class="inout-center-items">
     <view wx:for="{{content}}" wx:key="id" wx:for-index="idx" wx:for-item="inout" class="inout-center-item">
       <view class='inout-center-item-head-title'>
-        <view class='inout-center-item-head-title-lf'>{{inout.payType}}</view>
+        <view class='inout-center-item-head-title-lf'>{{inout.payTypeDesc}}</view>
         <view wx:if="{{inout.payType==1}}" class="inout-center-item-head-title-lf red">
           <text wx:if="{{inout.payPrice > 0}}">-{{inout.payPrice}}元</text>
           <text wx:if="{{inout.payPrice > 0 && inout.payHour > 0}}">，</text>
