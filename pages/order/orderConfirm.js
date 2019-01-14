@@ -159,9 +159,15 @@ Page({
 
     let serviceTypeId = this.data.formInit.services[sindex].id;
 
+    var userPerfectAddr = wx.getStorageSync('userPerfectAddr');
+    if (!userPerfectAddr){
+      app.common.errorToShow("地址不能为空");
+      return false;
+    }
+
     var data = {
       id: 0,
-      name: "家政服务",
+      name: userPerfectAddr.contactUser,
       telphone: userMobile,
       fkServiceId: { id: serviceTypeId},
       fkPriceId: 0,
