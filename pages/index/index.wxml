@@ -8,14 +8,18 @@
 </swiper>  -->
 <swiper class="fix-with" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <swiper-item>
-    <image src="/static/index/page1.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+    <image src="https://www.lhjj66.com/minipgimages/7401.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
   <swiper-item>
-    <image src="/static/index/page1.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+    <image src="https://www.lhjj66.com/minipgimages/7402.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
   <swiper-item>
-    <image src="/static/index/page1.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+    <image src="https://www.lhjj66.com/minipgimages/7403.png" class="slide-image" bindtap="slideDetail" data-id="1" />
   </swiper-item>
+  <swiper-item>
+    <image src="https://www.lhjj66.com/minipgimages/7404.png" class="slide-image" bindtap="slideDetail" data-id="1" />
+  </swiper-item>
+
 </swiper>
 
 <!-- space -->
@@ -41,10 +45,10 @@
   </view> -->
   <view class="services-area-body">
     <view class="services-area-body-image-sm">
-      <image class="commonbj" src="../../static/index/commonbj.png" />
+      <image class="commonbj" src="https://www.lhjj66.com/minipgimages/commonbj.png" />
     </view>
     <view class="services-area-body-image-lc">
-      <image class="orderdown" src="../../static/index/orderdown.png" />
+      <image class="orderdown" src="https://www.lhjj66.com/minipgimages/orderdown.png" />
     </view>
     <view class='area-space'></view>
     <view class="services-area-body-bt">
