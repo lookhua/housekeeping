@@ -84,11 +84,11 @@ Page({
     };
     app.requestUrl('recharge/prepay', data, 'POST', function(res) {
       wx.requestPayment({
-        'timeStamp': '' + res.data.timeStamp,
-        'nonceStr': res.data.nonceStr,
-        'package': res.data.package,
-        'signType': res.data.signType,
-        'paySign': res.data.paySign,
+        'timeStamp': '' + res.data.data.timeStamp,
+        'nonceStr': res.data.data.nonceStr,
+        'package': res.data.data.package,
+        'signType': res.data.data.signType,
+        'paySign': res.data.data.paySign,
         'success': function(e) {
           if (e.errMsg == "requestPayment:ok") {
             app.common.errorToBack('支付成功');
