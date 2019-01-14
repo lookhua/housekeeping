@@ -11,7 +11,7 @@
         <label class="weui-label">评价内容：</label>
       </view>
       <view class="orderComment-textarea-border">
-        <textarea class="orderComment-yzm-textarea" bindblur="bindTextAreaBlur" maxlength="1000" auto-height auto-focus='true' placeholder="" value='{{comment}}' />
+        <textarea class="orderComment-yzm-textarea" bindinput="bindTextAreaBlur" maxlength="1000" auto-height auto-focus='true' placeholder="" value='{{comment}}' />
       </view>
     </view>
     <view class='area-space'></view>

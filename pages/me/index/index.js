@@ -60,7 +60,7 @@ Page({
   //查看全部订单
   orderAll: function() {
     wx.navigateTo({
-      url: '/pages/order/orderList?tabselected=0',
+      url: '/pages/order/orderList?tabselected=0&userType=2',
     });
   },
 

@@ -33,6 +33,7 @@ Page({
       app.common.errorToShow("请输入评价内容");
       return false;
     }
+    console.log("custommer comment is " + comment);
     var userId = wx.getStorageSync("userId")
     console.log("userId get in login page is "+userId)
     var data = {
@@ -42,7 +43,9 @@ Page({
       orderId: userId
     };
     app.requestUrl('order/evaluate', data, 'POST', function(res) {
-      wx.navigateBack(1);
+      wx.navigateTo({
+        url: '/pages/order/orderList?tabselected=0&userType=2',
+      });
     }, function() {
       app.common.errorToShow("评价失败");
     }, true,false);
