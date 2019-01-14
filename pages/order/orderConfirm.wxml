@@ -17,7 +17,7 @@
       <view class="cell-list-item">
         <image class="cell-list-item-lfimg" src="/static/image/jilu.png" />
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">选择服类型</view>
+          <view class="cell-list-item-text-tile">选择服务类型</view>
           <view class="cell-list-item-text-remark">
             <!-- <picker bindchange="bindPickerChange" value="{{serviceArrayIndex}}" range-key="time" range="{{formInit.services}}">
               <view class="picker">{{serviceLongArray[serviceArrayIndex].price}}小时</view>
@@ -44,7 +44,7 @@
       <view class="cell-list-item">
         <image class="cell-list-item-lfimg" src="/static/order/time.png" />
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">选择服务日期</view>
+          <view class="cell-list-item-text-tile">服务开始日期</view>
           <view class="cell-list-item-text-remark">
             <picker mode="date" bindchange="bindDateChange" value="{{serviceBeginDate}}" start="{{formInit.pickerDateStart}}" end="{{formInit.pickerDateEnd}}">
               <view class="picker">{{serviceBeginDate}}</view>
@@ -57,7 +57,7 @@
       <view class="cell-list-item">
         <image class="cell-list-item-lfimg" src="/static/image/signin.png" />
         <view class="cell-list-item-text">
-          <view class="cell-list-item-text-tile">选择服务时间</view>
+          <view class="cell-list-item-text-tile">服务开始时间</view>
           <view class="cell-list-item-text-remark">
             <picker mode="time" value="{{serviceBeginTime}}" start="{{formInit.pickerTimeStart}}" end="{{formInit.pickerTimeEnd}}" bindchange="bindTimeChange">
               <view class="picker">{{serviceBeginTime}}</view>
