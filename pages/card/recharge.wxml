@@ -35,7 +35,7 @@
             <view class="weui-label">输入金额</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" value='{{inputMonney}}' type='number' bindinput="realRechargeInput" placeholder-class='p-class' placeholder='输入充值金额' />
+            <input class="weui-input" value='{{inputMonney}}' type='digit' bindinput="realRechargeInput" placeholder-class='p-class' placeholder='输入充值金额' />
           </view>
         </view>
       </view>
