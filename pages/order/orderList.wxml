@@ -27,6 +27,18 @@
           </view>
         </view>
         <view class="order-list-item-body" bindtap='orderDetail' data-index='{{index}}'>
+          <block wx:if="{{userType==3}}">
+          <view class='order-list-item-body-line'>
+            <image class='order-list-item-body-lfimg' src="/static/order/man.png"></image>
+            <text class='order-list-item-body-line-title'>客户：</text>
+            <text class='order-list-item-body-line-content'>{{item.subscribe.name}}</text>
+          </view>
+          <view class='order-list-item-body-line'>
+            <image class='order-list-item-body-lfimg' src="/static/order/phone-num.png"></image>
+            <text class='order-list-item-body-line-title'>联系方式：</text>
+            <text class='order-list-item-body-line-content'>{{item.subscribe.telphone}}</text>
+          </view>
+          </block>
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didian1.png"></image>
             <text class='order-list-item-body-line-title'>服务时间：</text>
