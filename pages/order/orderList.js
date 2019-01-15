@@ -232,7 +232,7 @@ Page({
 
   orderDetail: function(e) {
     let page = this;
-    let orderIndex = e.target.dataset.index;
+    let orderIndex = e.currentTarget.dataset.index;
     let orderId = this.data.content[orderIndex].id || '';
     wx.navigateTo({
       url: 'orderPay?orderId=' + orderId + '&userType=' + page.data.userType

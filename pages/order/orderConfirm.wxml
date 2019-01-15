@@ -35,7 +35,7 @@
         <view class="cell-list-item-text">
           <view class="cell-list-item-text-tile">输入服务时长</view>
           <view class="cell-list-item-text-remark">
-            <input bindinput="orderServiceHoursInput" type="number" value="{{serviceHours}}"></input>
+            <input bindinput="orderServiceHoursInput" type="digit" bindblur="orderServiceHoursBlur" value="{{serviceHours}}"></input>
           </view>
         </view>
         <image class="cell-list-item-rtimg" src="" />

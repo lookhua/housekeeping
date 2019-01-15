@@ -130,9 +130,21 @@ Page({
 
   orderServiceHoursInput: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    var hours = e.detail.value || 0;
+    var hours = e.detail.value;
     var money = this.data.perPrice * hours;
     this.setData({
+      serviceHours: hours,
+      payMoney: money
+    })
+  },
+
+  orderServiceHoursBlur: function (e) {
+    console.log('orderServiceHoursBlur发送选择改变，携带值为', e.detail.value)
+    var hours = e.detail.value || 0;
+    var hours = parseFloat(hours).toFixed(1);
+    var money = this.data.perPrice * hours;
+    this.setData({
+      serviceHours: hours,
       payMoney: money
     })
   },
@@ -152,7 +164,7 @@ Page({
       app.common.errorToShow("小时数不小于" + this.data.formInit.serviceHoursStart);
       return ;
     }
-
+    
     let serviceTime = this.data.serviceBeginDate + " " + this.data.serviceBeginTime;
 
     let sindex = this.data.priceIndex;

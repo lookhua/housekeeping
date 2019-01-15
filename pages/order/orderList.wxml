@@ -26,7 +26,7 @@
             <view class='order-list-item-head-text-remark' wx:elif="{{item.orderStatus==5}}">已关闭</view>
           </view>
         </view>
-        <view class="order-list-item-body" bindtap='orderDetail' data-index='{{index}}'>
+        <view class="order-list-item-body" data-index='{{index}}' bindtap='orderDetail'>
           <block wx:if="{{userType==3}}">
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/man.png"></image>
