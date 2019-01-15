@@ -70,8 +70,8 @@
         </view>
         <view class="order-list-item-foot" wx:if="{{userType==2}}">
           <view class="order-list-item-foot-left">
-            <text class='order-list-item-foot-left-tip'>预约金额：</text>
-            <text class='order-list-item-foot-left-imp'>¥{{item.subscribe.pay}}</text>
+            <text class='order-list-item-foot-left-tip'>小计金额：</text>
+            <text class='order-list-item-foot-left-imp'>¥{{item.serviceMoney}}</text>
           </view>
           <view wx:if="{{tabselected==1}}">
             <button data-tagId='1' data-opt='1' data-index='{{index}}' bindtap='cancelOrder'>取消订单</button>
