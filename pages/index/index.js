@@ -93,6 +93,10 @@ Page({
     wx.navigateTo({
       url: '../order/orderConfirm'
     })
+  },
+
+  onShareAppMessage:function(){
+    
   }
 
 })
