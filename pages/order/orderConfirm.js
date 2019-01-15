@@ -172,7 +172,8 @@ Page({
     let serviceTypeId = this.data.formInit.services[sindex].id;
 
     var userPerfectAddr = wx.getStorageSync('userPerfectAddr');
-    if (!userPerfectAddr){
+  
+    if (!userPerfectAddr || this.data.serviceAddrId == 0){
       app.common.errorToShow("地址不能为空");
       return false;
     }
