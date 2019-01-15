@@ -71,11 +71,8 @@ Page({
         console.log("checkSession userId is " + userId)
         var userToken = wx.getStorageSync('userToken');
         console.log("checkSession userToken is " + userToken)
-        if (!userId || !userToken) {
-          this.newUserLogIn();
-        }else{
-          wx.navigateBack(1);
-        }
+        //强制进行登录，防止用户信息更新导致的信息不同步
+        this.newUserLogIn();
       },
       fail: res => {
         this.newUserLogIn();
