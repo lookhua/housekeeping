@@ -42,7 +42,7 @@
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didian1.png"></image>
             <text class='order-list-item-body-line-title'>服务时间：</text>
-            <text class='order-list-item-body-line-content'>{{item.subscribe.serviceTime}} 时长：{{item.subscribe.serviceHours}}</text>
+            <text class='order-list-item-body-line-content'>{{item.subscribe.serviceTime}} 时长：{{item.subscribe.serviceHours}} 小时</text>
           </view>
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didain.png"></image>
