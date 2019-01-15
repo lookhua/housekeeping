@@ -49,7 +49,7 @@ Page({
   },
   //提交按钮
   showTopTips: function () {
-    if(this.data.nickname == ''){
+    if(!this.data.nickname){
       wx.showToast({
         title: '请输入昵称',
         icon: 'success',
