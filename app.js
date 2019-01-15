@@ -13,12 +13,12 @@ App({
   },
 
   //post直接请求
-  requestUrl: function(path, data, method, callback, dealError, show = true, form = true, needPrefix = true) {
-    if (show) {
-      wx.showLoading({
-        title: '载入中...'
-      });
-    }
+  requestUrl: function(path, data, method, callback, dealError, show = false, form = true, needPrefix = true) {
+    // if (show) {
+    //   wx.showLoading({
+    //     title: '载入中...'
+    //   });
+    // }
     var userToken = wx.getStorageSync('userToken');
     var head = {
       token: userToken,
@@ -42,9 +42,9 @@ App({
       header: head,
       method: method,
       success: function(res) {
-        if (show) {
-          wx.hideLoading();
-        }
+        // if (show) {
+        //   wx.hideLoading();
+        // }
         //这里做判断，如果不报错就返回，如果报错，就做错误处理
         if (res.data.code == 0 || res.data.code == 200) {
           callback(res);
@@ -53,15 +53,15 @@ App({
         }
       },
       fail: function(res) {
-        if (show) {
-          wx.hideLoading();
-        }
+        // if (show) {
+        //   wx.hideLoading();
+        // }
         common.errorToBack('接口调用失败');
       },
       complete: function(res) {
-        if (show) {
-          wx.hideLoading();
-        }
+        // if (show) {
+        //   wx.hideLoading();
+        // }
       }
     });
   }
