@@ -42,7 +42,7 @@
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didian1.png"></image>
             <text class='order-list-item-body-line-title'>服务时间：</text>
-            <text class='order-list-item-body-line-content'>{{item.subscribe.serviceTime}}</text>
+            <text class='order-list-item-body-line-content'>{{item.subscribe.serviceTime}} 时长：{{item.subscribe.serviceHours}}</text>
           </view>
           <view class='order-list-item-body-line'>
             <image class='order-list-item-body-lfimg' src="/static/order/didain.png"></image>
@@ -70,7 +70,7 @@
         </view>
         <view class="order-list-item-foot" wx:if="{{userType==2}}">
           <view class="order-list-item-foot-left">
-            <text class='order-list-item-foot-left-tip'>小计金额：</text>
+            <text class='order-list-item-foot-left-tip'>预约金额：</text>
             <text class='order-list-item-foot-left-imp'>¥{{item.subscribe.pay}}</text>
           </view>
           <view wx:if="{{tabselected==1}}">
