@@ -21,12 +21,7 @@ Page({
       content: '确认退出登录吗？',
       success: function(res) {
         if (res.confirm) {
-          wx.removeStorageSync('userId');
-          wx.removeStorageSync('userToken');
-          wx.removeStorageSync('userMobile');
-          wx.removeStorageSync('userType');
-          wx.removeStorageSync('userPerfectAddr');
-          wx.removeStorageSync('userNickName');
+          wx.clearStorageSync();
           wx.switchTab({
             url: '/pages/index/index'
           });

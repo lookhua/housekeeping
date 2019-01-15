@@ -17,16 +17,17 @@ Page({
   },
 
   onLoad: function(e) {
-    let type = wx.getStorageSync("userType") || 2; //2-用户，3-保洁人员
-    this.setData({
-      userType: type
-    });
+
   },
 
   //加载执行
   onShow: function(options) {
     var page = this;
     var userId = wx.getStorageSync('userId');
+    let type = wx.getStorageSync("userType") || 2; //2-用户，3-保洁人员
+    this.setData({
+      userType: type
+    });
     //加载订单数量
     app.requestUrl('order/getOrdersAmount', {
       userId: userId
