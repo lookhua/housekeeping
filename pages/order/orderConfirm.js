@@ -48,8 +48,15 @@ Page({
       //设置默认地址
       console.log(" res.data.data.addressList.length is " + res.data.data.addressList.length);
       var userPerfectAddr = wx.getStorageSync('userPerfectAddr')
-      if (res.data.data.addressList.length != 0 && !userPerfectAddr) {
-        wx.setStorageSync('userPerfectAddr', res.data.data.addressList[0]);
+      if (res.data.data.addressList.length != 0) {
+        for (var i = 0; i < res.data.data.addressList.length; i++) {
+          var tempAddr = res.data.data.addressList[i];
+          if (userPerfectAddr && tempAddr.id == userPerfectAddr.id) {
+            userPerfectAddr = tempAddr;
+            wx.setStorageSync('userPerfectAddr', tempAddr);
+            break;
+          }
+        }
       }
       if (userPerfectAddr) {
         var ssq = userPerfectAddr.contactSsqx;
@@ -128,7 +135,7 @@ Page({
     })
   },
 
-  orderServiceHoursInput: function (e) {
+  orderServiceHoursInput: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     var hours = e.detail.value;
     var money = this.data.perPrice * hours;
@@ -138,7 +145,7 @@ Page({
     })
   },
 
-  orderServiceHoursBlur: function (e) {
+  orderServiceHoursBlur: function(e) {
     console.log('orderServiceHoursBlur发送选择改变，携带值为', e.detail.value)
     var hours = e.detail.value || 0;
     var hours = parseFloat(hours).toFixed(1);
@@ -160,11 +167,11 @@ Page({
 
     let serviceHours = this.data.serviceHours;
 
-    if (this.data.formInit.serviceHoursStart > serviceHours ){
+    if (this.data.formInit.serviceHoursStart > serviceHours) {
       app.common.errorToShow("小时数不小于" + this.data.formInit.serviceHoursStart);
-      return ;
+      return;
     }
-    
+
     let serviceTime = this.data.serviceBeginDate + " " + this.data.serviceBeginTime;
 
     let sindex = this.data.priceIndex;
@@ -172,8 +179,8 @@ Page({
     let serviceTypeId = this.data.formInit.services[sindex].id;
 
     var userPerfectAddr = wx.getStorageSync('userPerfectAddr');
-  
-    if (!userPerfectAddr || this.data.serviceAddrId == 0){
+
+    if (!userPerfectAddr || this.data.serviceAddrId == 0) {
       app.common.errorToShow("地址不能为空");
       return false;
     }
@@ -182,12 +189,16 @@ Page({
       id: 0,
       name: userPerfectAddr.contactUser,
       telphone: userMobile,
-      fkServiceId: { id: serviceTypeId},
+      fkServiceId: {
+        id: serviceTypeId
+      },
       fkPriceId: 0,
       serviceHours: serviceHours,
       serviceTime: serviceTime,
       deviceFlag: 0,
-      user: {id: userId},
+      user: {
+        id: userId
+      },
       addressId: this.data.serviceAddrId,
       address: this.data.serviceAddr,
       pay: this.data.payMoney,
