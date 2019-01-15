@@ -27,7 +27,7 @@ Page({
   //绑定卡
   bindCardToUser: function() {
     var page = this;
-    if (page.data.cardNumber == '') {
+    if (!page.data.cardNumber) {
       app.common.errorToShow("请输入正确的卡号");
       return false;
     }
