@@ -90,7 +90,7 @@ Page({
   onShow: function() {
     var page = this;
     var userId = wx.getStorageSync('userId');
-    var orderStatus = page.data.orderStatus;
+    var orderStatus = this.tagId2OrderStatus(this.data.tabselected);
     this.getOrderList(userId, orderStatus, page.data);
   },
 
@@ -172,6 +172,10 @@ Page({
     var userId = wx.getStorageSync('userId');
     var tagId = e.target.dataset.tagid;
     var orderStatus = this.tagId2OrderStatus(tagId);
+    this.setData({
+      tabselected: tagId,
+      orderStatus: orderStatus
+    });
     console.log("you chioce tagid is " + tagId)
     this.reversParams(tagId);
     //get the order list 
