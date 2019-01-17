@@ -18,7 +18,7 @@
         <view class="order-list-item-head ">
           <image class='order-list-item-head-lfimg' src="/static/order/ordertip.png"></image>
           <view class='order-list-item-head-text'>
-            <view class='order-list-item-head-text-title'>日常保洁</view>
+            <view class='order-list-item-head-text-title'>{{item.service.serviceName}}</view>
             <view class='order-list-item-head-text-remark' wx:if="{{item.orderStatus==1}}">待派单</view>
             <view class='order-list-item-head-text-remark' wx:elif="{{item.orderStatus==2}}">待服务</view>
             <view class='order-list-item-head-text-remark' wx:elif="{{item.orderStatus==3}}">待支付</view>
