@@ -88,7 +88,7 @@ Page({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         var url = app.config.api_url;
         var nickName = wx.getStorageSync("userNickName");
-        var bindMobile = wx.setStorageSync('userMobile');
+        var bindMobile = wx.getStorageSync('userMobile');
         console.log("wx.login code2session nickname is " + nickName + " and bindMobile is " + bindMobile);
         var data = {
           code: res.code,
