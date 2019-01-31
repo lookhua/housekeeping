@@ -213,8 +213,8 @@ Page({
       wx.navigateTo({
         url: 'orderList?tabselected=1'
       })
-    }, function() {
-      app.common.errorToShow("请求失败:"+res.data.msg);
+    }, function (res) {
+      app.common.errorToShow(res.data.msg);
     }, true, false);
 
 
