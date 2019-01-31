@@ -214,7 +214,7 @@ Page({
         url: 'orderList?tabselected=1'
       })
     }, function() {
-      app.common.errorToShow("请求失败");
+      app.common.errorToShow("请求失败:"+res.data.msg);
     }, true, false);
 
 
