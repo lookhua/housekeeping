@@ -15,6 +15,7 @@ Page({
     serviceHours: 3,
     formInit: {
       addressList: [],
+      orderTip:'',
       services: [],
       serviceHoursStart: 3,
       pickerDateStart: '2019-01-01',

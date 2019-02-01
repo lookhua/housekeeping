@@ -71,3 +71,8 @@ page{
   margin: 10rpx;
   border: 4rpx dashed rgb(253, 179, 58);
 }
+
+.info-tip{
+  font-size: 26rpx; 
+  color:#e68888;
+}
