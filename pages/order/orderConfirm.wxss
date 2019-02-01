@@ -12,7 +12,7 @@ page{
 
 .cell-list-item{
   position: relative;
-  height: 140rpx;
+  height: 120rpx;
   font-size: 28rpx;
   margin-bottom: 20rpx;
   background: white;
